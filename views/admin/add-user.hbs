@@ -1,0 +1,130 @@
+<div class="dark-edition">
+    <div class="wrapper ">
+        <div class="sidebar" data-color="white" data-background-color="black" >
+        <!--data-image="../assets/img/sidebar-2.jpg"
+            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+            Tip 2: you can also add an image using data-image tag
+        -->
+      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Admin Panel
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+             <a class="nav-link" href="../admin/user-management">
+              <i class="material-icons">person</i>
+              <p>Users Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/product-management">
+              <i class="material-icons">content_paste</i>
+              <p>Product Management</p>
+            </a>
+          </li>
+          
+           <li class="nav-item ">
+            <a class="nav-link" href="../admin/order-management">
+              <i class="material-icons">bubble_chart</i>
+              <p>Order Management</p>
+            </a>
+          </li> 
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/category-management">
+              <i class="material-icons">category</i>
+              <p>Category Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/banner-management">
+              <i class="material-icons">library_books</i>
+              <p>Banner Management</p>
+            </a>
+          </li>
+            <!-- <li class="nav-item ">
+                <a class="nav-link" href="./map.html">
+                <i class="material-icons">location_ons</i>
+                <p>Maps</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="./notifications.html">
+                <i class="material-icons">notifications</i>
+                <p>Notifications</p>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item active-pro ">
+                    <a class="nav-link" href="./upgrade.html">
+                        <i class="material-icons">unarchive</i>
+                        <p>Upgrade to PRO</p>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+      </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+       
+        <!-- End Navbar -->
+
+
+      <section class="dark-edition">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mt-3 text-white">
+                    <h2 class="mt-5" style="font-size: 2rem;">Add User</h2>
+                    <form action="/admin/add-user" style="margin-top: 2em;" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <label for="name" class="form-label">User Name</label>
+                          <input type="text" class="form-control" onkeyup="validateName()" id="name" name="name" aria-describedby="emailHelp">
+                          <span id="name-error" class="validation-label" style="color: red;"></span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">User Email</label>
+                          <input type="email" class="form-control" onkeyup="validateEmail()" id="email" name="email">
+                          <span id="email-error" class="validation-label" style="color: red;"></span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="mobnum" class="form-label">Mobile Number</label>
+                          <input type="tel" class="form-control" name="tel" onkeyup="validateTel()" id="tel">
+                          <span id="tel-error" class="validation-label" style="color: red;" ></span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="password" class="form-label">User Password</label>
+                          <input type="password" class="form-control" name="password" onkeyup="validatePassword()" id="password">
+                          <span id="password-error" class="validation-label" style="color: red;"></span>
+                        </div>
+
+                        {{!-- <div class="mb-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" name="image">
+                        </div> --}}
+
+                          <input type="string" id="userStatus" class="userStatus" value="true" style="display: none;"/>
+
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-dark" onclick="return validateForm()">Submit</button>
+                        {{!-- </div>
+                        <div class="text-center mt-4"> --}}
+                            <button type="button" class="btn btn-dark"><a href="/admin/user-management">Cancel</a></button>
+                        </div>
+                        <span id="submit-error" class="validation-label" style="color: red;"></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </section>
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/javascripts/signup-validation.js"></script>

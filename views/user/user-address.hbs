@@ -1,0 +1,162 @@
+<div class="bg-light py-3">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{user.name}}</strong></div>
+    </div>
+    </div>
+</div>  
+<div class="site-section">
+    <div class="container">
+    <div class="row ">
+        <div class="col-md-12">
+        <h2 class="h3 mb-3 text-black">{{user.name}}</h2>
+        </div>
+        <div class="col-md-5 ml-auto">
+            <div class="p-4 border mb-3">
+                <a href="/userprofile/{{user._id}}"><span class="d-block text-black h6 text-uppercase" >My Account</span></a>
+                <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+            </div>
+            <div class="p-4 border mb-3">
+                <span class="d-block text-primary h6 text-uppercase">My Addresses</span>
+                <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+            </div>
+            <div class="p-4 border mb-3">
+                <a href="/wishlist"> <span class="d-block text-black h6 text-uppercase">My Wishlist</span></a>
+            </div>
+            <div class="p-4 border mb-3">
+                <a href="/user-orders"><span class="d-block text-black h6 text-uppercase">My Orders</span></a>
+            </div>
+            <div class="p-4 border mb-3">
+                <span class="d-block text-black h6 text-uppercase">Change Password</span>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="p-3 border text-primary">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-3 text-black">My Addresses</h2>
+                    </div>
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/user-add-address"><span class="icon icon-home"> Add new address</span></a>
+                </div>
+                <div class="p-4 border mb-3 text-black">
+                   
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+
+{{!-- <div class="bg-light py-3">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{user.name}}</strong></div>
+    </div>
+    </div>
+</div>  
+<div class="site-section">
+    <div class="container">
+    <div class="row ">
+        <div class="col-md-12">
+        <h2 class="h3 mb-3 text-black">{{user.name}}</h2>
+        </div>
+        <div class="col-md-5 ml-auto">
+            <div class="p-4 border mb-3">
+                <a href="/userprofile/{{user._id}}"><span class="d-block text-black h6 text-uppercase" >My Account</span></a>
+                <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+            </div>
+            <div class="p-4 border mb-3">
+                <span class="d-block text-primary h6 text-uppercase">My Addresses</span>
+                <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+            </div>
+            <div class="p-4 border mb-3">
+                <a href="/wishlist"> <span class="d-block text-black h6 text-uppercase">My Wishlist</span></a>
+            </div>
+            <div class="p-4 border mb-3">
+                <a href="/user-orders"><span class="d-block text-black h6 text-uppercase">My Orders</span></a>
+            </div>
+            <div class="p-4 border mb-3">
+                <span class="d-block text-black h6 text-uppercase">Change Password</span>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="p-3 border text-primary">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-3 text-black">My Addresses</h2>
+                    </div>
+                </div>
+
+
+<div class="p-4 border mb-3">
+  <a href="#" id="add-address"><span class="icon icon-home"> Add new address</span></a>
+</div>
+
+<div id="new-address-form" class="p-4 border mb-3" style="display: none;">
+  <form id="address-form">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="address" placeholder="Address" required>
+    <input type="text" name="city" placeholder="City" required>
+    <input type="text" name="state" placeholder="State" required>
+    <input type="text" name="zip" placeholder="Zip code" required>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<div id="address-list" class="p-4 border mb-3">
+  <h6>Vrinda S</h6>
+  <h6>Vrindavanam, Vellimon West P.O</h6>
+  <h6>Vellimon, Kollam</h6>
+  <h6>Kerala</h6>
+  <h6>691511</h6>
+</div>
+
+
+
+{{!-- <div id="address-list">
+  {{#each addresses}}
+  <div class="p-4 border mb-3 text-black">
+    <h6>{{name}}</h6>
+    <h6>{{address1}}</h6>
+    <h6>{{address2}}</h6>
+    <h6>{{city}}, {{state}}</h6>
+    <h6>{{zip}}</h6>
+  </div>
+  {{/each}}
+</div> --}}
+
+
+<script>
+// Load form when "Add new address" link is clicked
+$(document).on("click", "#add-address", function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: "/new-location",
+    method: "GET",
+    success: function(html) {
+      $("#new-address-form").html(html); // Insert form HTML into page
+      $("#new-address-form").show(); // Show the form
+    }
+  });
+});
+
+// Submit form when submit button is clicked
+$(document).on("submit", "#address-form", function(e) {
+  e.preventDefault();
+  var data = $(this).serialize();
+  $.ajax({
+    url: "/new-location",
+    method: "POST",
+    data: data,
+    success: function(data) {
+      $("#address-list").prepend(data); // Insert new address HTML into page
+      $("#new-address-form").hide(); // Hide the form
+    }
+  });
+});
+
+</script> --}}

@@ -1,0 +1,127 @@
+<div class="dark-edition">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-background-color="black" >
+      <!--data-image="../assets/img/sidebar-2.jpg"
+          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+          Tip 2: you can also add an image using data-image tag
+      -->
+      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Admin Panel
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="../admin/user-management">
+              <i class="material-icons">person</i>
+              <p>Users Management</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../admin/product-management">
+              <i class="material-icons">content_paste</i>
+              <p>Product Management</p>
+            </a>
+          </li>
+          
+           <li class="nav-item ">
+            <a class="nav-link" href="../admin/order-management">
+              <i class="material-icons">bubble_chart</i>
+              <p>Order Management</p>
+            </a>
+          </li> 
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/category-management">
+              <i class="material-icons">category</i>
+              <p>Category Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/banner-management">
+              <i class="material-icons">library_books</i>
+              <p>Banner Management</p>
+            </a>
+          </li>
+            <!-- <li class="nav-item ">
+                <a class="nav-link" href="./map.html">
+                <i class="material-icons">location_ons</i>
+                <p>Maps</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="./notifications.html">
+                <i class="material-icons">notifications</i>
+                <p>Notifications</p>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item active-pro ">
+                    <a class="nav-link" href="./upgrade.html">
+                        <i class="material-icons">unarchive</i>
+                        <p>Upgrade to PRO</p>
+                    </a>
+                </li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+
+    <section class="dark-edition">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mt-5 text-white">
+                <h2 class="fw-bold" style="font-size: 1.5rem;">EDIT PRODUCTS</h2>
+                <form action="/admin/edit-product/{{product._id}}" style="margin-top: 2em;" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                    <label for="name" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" value="{{product.name}}">
+                    </div>
+                    <div class="mb-3">
+                    <label for="name" class="form-label">Product Code</label>
+                    <input type="" class="form-control" id="code" name="code" value="{{product.code}}">
+                    </div>
+                    <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{product.description}}">
+                    </div>
+                    <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" value="{{product.price}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image : </label>
+                        <input type="file" class="form-control" id="image" name="image" multiple="required" onchange="viewImage(event)">
+                        <div class="d-flex">
+                          {{#each product.imagefield}}
+                            <img  src="{{this}}" alt=""  style="width: 60px;" class="p-2" id="imgView"/>
+                          {{/each}}
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                        <button type="submit" class="btn btn-dark">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </section>
+  </div>
+</div>
+<script>
+
+let viewImage = (event) =>{
+  for(let i=0; i < files.length; i++){
+    document.getElementById('imgView').src = URL.createObjectURL(event.target.files[i]); 
+  }
+  
+  }
+</script>

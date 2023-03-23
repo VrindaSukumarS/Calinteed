@@ -1,0 +1,61 @@
+<div class="bg-light py-3">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">My Orders</strong></div>
+    </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">My Orders</h2>
+        </div>
+        <div class="row mb-5">
+          <form class="col-md-12" method="">
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">Date</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-quantity">Address</th>
+                    <th class="product-quantity">Order Id</th>
+                    <th class="product-total">Status</th>
+                    <th class="product-total">Payment Method</th>
+                    <th class="product-remove">View Details</th>
+                  </tr>
+                </thead>
+                
+                <tbody id="cart-items">
+                  {{#each orders}}
+                  <tr>
+                    
+                    <td class="product-name">
+                      <h2 class="h5 text-black">{{this.date}}</h2>
+                    </td>
+                    
+                    <td class="product-name">
+                      <h2 class="h5 text-black">Rs.{{this.totalAmount}}</h2>
+                    </td>
+                    
+                    <td>{{this.deliveryDetails.address}}</td>
+                    <td>{{this._id}}</td>
+                    <td>{{this.status}}</td>
+                    <td>{{this.paymentMethod}}</td>
+                    
+                    <td>
+                        <a href="/view-order-products/{{this._id}}" class="buy-now btn btn-sm btn-dark">View Details</a></p>
+                    </td>
+                  </tr>
+                  {{/each}}
+
+
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+    </div>
+</div> 
+

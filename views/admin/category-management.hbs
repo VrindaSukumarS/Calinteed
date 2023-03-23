@@ -1,0 +1,130 @@
+<div class="dark-edition">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-background-color="black" >
+      <!--data-image="../assets/img/sidebar-2.jpg"
+          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+          Tip 2: you can also add an image using data-image tag
+      -->
+      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Admin Panel
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="../admin/user-management">
+              <i class="material-icons">person</i>
+              <p>Users Management</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/product-management">
+              <i class="material-icons">content_paste</i>
+              <p>Product Management</p>
+            </a>
+          </li>
+          
+           <li class="nav-item ">
+            <a class="nav-link" href="../admin/order-management">
+              <i class="material-icons">bubble_chart</i>
+              <p>Order Management</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../admin/category-management">
+              <i class="material-icons">category</i>
+              <p>Category Management</p>
+            </a>
+          </li> 
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/banner-management">
+              <i class="material-icons">library_books</i>
+              <p>Banner Management</p>
+            </a>
+          </li>
+            <!-- <li class="nav-item ">
+                <a class="nav-link" href="./map.html">
+                <i class="material-icons">location_ons</i>
+                <p>Maps</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="./notifications.html">
+                <i class="material-icons">notifications</i>
+                <p>Notifications</p>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item active-pro ">
+                    <a class="nav-link" href="./upgrade.html">
+                        <i class="material-icons">unarchive</i>
+                        <p>Upgrade to PRO</p>
+                    </a>
+                </li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+      
+        <!-- End Navbar -->
+
+
+      <section class="dark-edition">
+        <div class="row">
+            <div class="mt-5 mx-4 d-flex"><a href="../admin/add-category" class="btn btn-success ms-auto">Add Category</a></div>
+        </div>
+          
+        <div class="mt-5 mx-4 text-white">
+          <table class="table mt-4 display text-white" id="categoryTable">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Category Name</th>
+              
+                <th scope="col">Edit</th>
+                {{!-- <th scope="col">Options</th>  --}}
+              </tr>
+            </thead>
+            <tbody>
+              {{#each categories}}
+                  <tr>
+                    {{!-- <th scope="row">1</th> --}}
+                    <td>{{inc  @index}}</td>
+                    <td>{{this.name}}</td>
+                    {{!-- <td>{{this.code}}</td>
+                    <td>{{this.description}}</td>
+                    <td>Rs.{{this.price}}</td> --}}
+                    {{!-- <td>{{this.image}}</td> --}}
+                    {{!-- <td><img src="{{this.imagefield.[0]}}" alt="{{this.name}}" style="max-width: 100px;"></td>  --}}
+                    <td><a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a> &nbsp;
+                    {{#if this.status}}
+                    <a href="/admin/unlistCategory/{{this._id}}" class="btn btn-danger" onclick="return confirm('Do you want to Unlist {{this.name}}')">Unlist</a></td> 
+                    {{else}}
+                    <a href="/admin/listCategory/{{this._id}}" class="btn btn-success" onclick="return confirm('Do you want List {{this.name}}')">list</a></td> 
+                  {{/if}}
+                  </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+          
+      </section>
+    </div>
+  </div>
+</div>
+{{!-- <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
+
+<script>
+
+  $(function () {
+    $('#categoryTable').DataTable();
+  });
+
+</script>
