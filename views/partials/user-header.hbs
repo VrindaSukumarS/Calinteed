@@ -1,87 +1,147 @@
-<header class="site-navbar" role="banner">
-  <nav class="site-navigation" role="navigation">
-    <div class="container text-white">
-      <ul class="site-menu js-clone-nav d-md-block">
-        <li>
+<div class="site-wrap">
+  <header class="site-navbar" role="banner">
+    {{!-- <div class="site-navbar-top">
+      <div class="container">
+        <div class="row align-items-center">
           <div class="site-logo">
-            <a href="" class="js-logo-clone "> Calintede</a>
-          </div>
-        </li>
-        <li><a href="/">Home</a></li>
-        <li><a href="/shop-view">Shop</a></li>
-        <li>
-          <a href="/about-us">About</a>
-        </li>
-        <li><a href="/fabric-view">Fabric Background</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li>
-          <form action="" class="site-block-top-search">
-            <span class="icon icon-search2 text-dark"></span>
-            <input type="text" class="form-control border-0" placeholder="Search">
-          </form>
-        </li>
-        <li>
-          <div class="site-top-icons">
-            <ul>
-              {{#if user}}
-              <li class="has-children">
-                <a href="/login"><span class="icon icon-person" ></span></a>
-                <ul class="dropdown">
-                  <li><a href="/userprofile/{{user._id}}">{{user.name}}</a></li>
-                  <li><a href="/userprofile/{{user._id}}">My Account</a></li>
-                  <li><a href="/user-orders">My Orders</a></li>
-                  <li><a href="/logout">Log Out</a></li>
-                </ul>
-              </li>
-              {{else}}
-              <li><a href="/login"><span class="icon icon-person"></span></a></li>
-              {{/if}}
-              {{#if user}}
-              <li><a href="/wishlist"><span class="icon icon-heart-o"></span></a></li>
-              {{else}}
-              <li><a href="/login"><span class="icon icon-heart-o"></span></a></li>
-              {{/if}}
 
-
-              {{#if user}}
-              <li>
-                <a href="/usercart" class="site-cart">
-                  <span class="icon icon-shopping_cart"></span>
-                  <span class="count" id="cartCount">{{cartCount}}</span>
-                </a>
-              </li>
-              {{else}}
-              <li>
-                <a href="/login" class="site-cart">
-                  <span class="icon icon-shopping_cart"></span>
-                  {{!-- <span class="count">{{cartCount}}</span> --}}
-                </a>
-              </li>
-              {{/if}}
-              <li class="d-inline-block d-md-none ml-md-0">
-                <a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a>
-              </li>
-            </ul>
+            <a href="index.html" class="js-logo-clone">Calinteed</a>
           </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-    <div class="site-mobile-menu">
-    <div class="container">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close">
-          <span class="icon-close2 js-menu-toggle"></span>
+          <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+            <div class="site-top-icons">
+              <ul>
+                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
+                      class="icon-menu"></span></a></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="site-mobile-menu-body"></div>
+    </div> --}}
+
+
+
+
+
+    <nav class="site-navigation text-right text-md-center"
+      style="position: fixed; z-index:-1; width:100%;background-color:white" role="navigation">
+
+      <div class="container text-white">
+        <div class="row align-items-center">
+          {{!-- <div class="site-logo">
+
+            <a href="index.html" class="js-logo-clone">Calinteed</a>
+          </div> --}}
+          {{!-- <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+            <div class="site-top-icons">
+              <ul>
+                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
+                      class="icon-menu"></span></a></li>
+              </ul>
+            </div>
+          </div> --}}
+
+        </div>
+
+        <ul class="site-menu js-clone-nav d-none d-md-block">
+          <li>
+            <div class="site-logo">
+              <a href="" class="js-logo-clone "> Calinteed</a>
+              {{!-- <a href="/">Home</a> --}}
+            </div>
+          </li>
+
+          <li><a href="/">Home</a></li>
+          <li><a href="/shop-view">Shop</a></li>
+          <li>
+            <a href="/about-us">About</a>
+          </li>
+          <li><a href="/fabric-view">Fabric Background</a></li>
+
+          <li><a href="contact.html" hidden>Contact Us</a></li>
+          <li>
+            {{#if user}}
+
+            <a href=""><strong>{{userName}}</strong></a>
+            {{/if}}
+
+          </li>
+          <li>
+            {{!-- <form action="" class="site-block-top-search">
+              <span class="icon icon- text-dark"></span>
+              <input type="text" class="form-control border-0" placeholder="">
+            </form> --}}
+          </li>
+
+          <li>
+            <div class="site-top-icons">
+              <ul>
+                {{#if user}}
+                <li class="has-children">
+                  <a href="/userprofile"><span class="icon icon-person"></span></a>
+                  <ul class="dropdown">
+                    <li><a href="/userprofile">{{user.name}}</a></li>
+                    <li><a href="/userprofile">My Account</a></li>
+                    <li><a href="/user-orders">My Orders</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                  </ul>
+                </li>
+                {{else}}
+                <li><a href="/login"><span class="icon icon-person"></span></a></li>
+                {{/if}}
+                {{#if user}}
+                <li><a href="/wishlist"><span class="icon icon-heart-o"></span></a></li>
+                {{else}}
+                <li><a href="/login"><span class="icon icon-heart-o"></span></a></li>
+                {{/if}}
+
+
+                {{#if user}}
+                <li>
+                  <a href="/usercart" class="site-cart">
+                    <span class="icon icon-shopping_cart"></span>
+                    <span class="count" id="cartCount">{{cartCount}}</span>
+                  </a>
+                </li>
+                {{else}}
+                <li>
+                  <a href="/login" class="site-cart">
+                    <span class="icon icon-shopping_cart"></span>
+                    {{!-- <span class="count">{{cartCount}}</span> --}}
+                  </a>
+                </li>
+                {{/if}}
+                <li class="d-inline-block d-md-none ml-md-0">
+                  <a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-close"></span></a>
+                </li>
+              </ul>
+
+
+            </div>
+          </li>
+        </ul>
+        <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+          <div class="site-top-icons">
+            <ul>
+              <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
+                    class="icon-menu "></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </nav>
+
+  </header>
+</div>
+{{!-- <div class="site-mobile-menu">
+  <div class="container">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
     </div>
+    <div class="site-mobile-menu-body"></div>
   </div>
-
-</header>
-
-
-
-
-
-
+</div> --}}

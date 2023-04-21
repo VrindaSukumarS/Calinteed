@@ -1,293 +1,461 @@
-    <div class="bg-light py-3">
-      <div class="container">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<div class="bg-light py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span><a href="/shop-view">Shop</a>
+        <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-section">
+  <div class="container">
+    <div class="row mb-5">
+      {{#if stockErr}}
+      <p class="text-danger text-bold ">{{stockErr}}</p>
+      {{/if}}
+      {{#if this.cartCount}}
+      {{!-- <form class="col-md-12" method="post"> --}}
+        <div class="col-md-12 site-blocks-table">
+          <table class="table">
+            
+              <tbody class="text-dark" id="cart-items">
+                {{#each product}}
+                {{#if (isGreater product.stock 0)}}
+                <tr>
+                  <td class="product-thumbnail card-img-top" style="">
+                    <img src="{{this.product.imagefield.[0]}}" alt="Image" class="img-fluid">
+                  </td>
+                  <td class="product-name">
+                    <p class="h6 text-black">{{this.product.name}}</p> <br>
+                    <p class="mb-2" style="font-size: 14px;">Product Code: {{this.product.code}}<br>Price:
+                      ₹{{this.product.price}}</p>
+                  </td>
+
+                  <td>
+                    <div class="input-group" style="max-width: 120px;">
+
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-dark js-btn-minus" type="button"
+                          onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../userId}}','{{this.product.price}}',-1)">&minus;</button>
+                      </div>
+                      <span class="form-control text-center" id="{{this.product._id}}">{{this.quantity}}</span>
+
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-dark js-btn-plus" type="button" id="cartStock"
+                          onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../userId}}','{{this.product.price}}',1)">&plus;</button>
+                      </div>
+                    </div>
+
+                  </td>
+                  <td id="sub{{this.product._id}}">
+                    <P>₹ {{math this.product.price '*' this.quantity}}.00</P>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
+                      data-target="#removeCart">Remove</button>
+                  </td>
+                </tr>
+
+                <div class="modal fade" id="removeCart" tabindex="-1" role="dialog" aria-labelledby="removeCartTitle"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="exampleModalLongTitle">Delete from Cart</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body text-danger">
+                        <h6>Do you want to Remove this Product from Cart</h6>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark"
+                          onclick="removeCartproduct('{{this._id}}','{{this.product._id}}')">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {{else}}
+                <tr>
+
+                  <td class="product-thumbnail card-img-top h-50">
+                    <img src="{{this.product.imagefield.[0]}}" alt="Image" class="img-fluid"
+                      style="opacity: 0.5;"><span>
+                      <div class="out-of-stock text-danger" style="font-weight: bold;">Out of Stock</div>
+
+                      {{!-- <p class="text-danger text-bold text-align-center">Out of Stock</p>
+                    </span> --}}
+
+                  </td>
+
+                  <td class="product-name" style="opacity: 0.5;">
+                    <p class="h6 text-black">{{this.product.name}}</p> <br>
+                    <p class="mb-2" style="font-size: 14px;">Product Code: {{this.product.code}}<br>Price:
+                      ₹{{this.product.price}}</p>
+                  </td>
+
+                  <td>
+                    <div class="input-group" style="max-width: 120px; opacity: 0.5;">
+
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-dark js-btn-minus" type="button"
+                          onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../userId}}','{{this.product.price}}',-1)"
+                          disabled>&minus;</button>
+                      </div>
+                      <span class="form-control text-center" id="{{this.product._id}}">{{this.quantity}}</span>
+
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-dark js-btn-plus" type="button" id="cartStock"
+                          onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../userId}}','{{this.product.price}}',1)"
+                          disabled>&plus;</button>
+                      </div>
+                    </div>
+
+                  </td>
+                  <td id="sub{{this.product._id}}">
+                    <P style="opacity: 0.5;">₹ {{math this.product.price '*' this.quantity}}.00</P>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" type="button" data-toggle="modal"
+                      data-target="#removeCart">Remove</button>
+                  </td>
+                </tr>
+
+                <div class="modal fade" id="removeCart" tabindex="-1" role="dialog" aria-labelledby="removeCartTitle"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="exampleModalLongTitle">Delete from Cart</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body text-danger">
+                        <h6>Do you want to Remove this Product from Cart</h6>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark"
+                          onclick="removeCartproduct('{{this._id}}','{{this.product._id}}')">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/if}}
+                {{/each}}
+
+
+
+              </tbody>
+            </table>
+        </div>
+        {{!--
+      </form> --}}
+
+
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row mb-5">
+          {{!-- <div class="col-md-6 mb-3 mb-md-0">
+            <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
+          </div> --}}
+          <div class="col-md-6">
+            <a href="/shop-view"><button class="btn btn-outline-dark btn-sm btn-block">Continue Shopping</button></a>
+
+          </div>
+        </div>
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
+          <div class="col-md-12">
+            <label class="text-black h4" for="coupon">Coupon</label>
+            <p>Enter your coupon code if you have one.</p>
+          </div>
+          <div class="col-md-8 mb-3 mb-md-0">
+            <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code" name="coupon">
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-dark btn-sm" id="applyButton">Apply Coupon</button>
+          </div>
+        </div>
+        <strong>
+          <p id="errMsg" name="errMsg" class="text-danger"></p>
+        </strong>
+      </div>
+
+      <div class="col-md-6 pl-5">
+        <div class="row justify-content-end">
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-12 text-right border-bottom mb-5">
+                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <span class="text-black">Subtotal</span>
+              </div>
+              <div class="col-md-6 text-right">
+                <strong class="text-black">₹<span id="total"> {{totalValue}}</span></strong>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <span class="text-black">Discount</span>
+              </div>
+              <div class="col-md-6 text-right">
+                <strong class="text-black">₹<span id="discount"> 0</span></strong>
+              </div>
+            </div>
+            <div class="row mb-5">
+              <div class="col-md-6">
+                <span class="text-black">Total</span>
+              </div>
+              <div class="col-md-6 text-right">
+                <strong class="text-black">₹<span id="carttotal"> {{totalValue}}</span></strong>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/checkout" id="checkout" class="btn btn-dark btn-lg btn-block"
+                  style="font-size: large;">Proceed To
+                  Checkout</a>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    {{else}}
+    <div class="container-fluid  mt-100">
+      <div class="row">
 
-    <div class="site-section">
-      <div class="container">
-        <div class="row mb-5">
-          <form class="col-md-12" method="post">
-            <div class="site-blocks-table">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-name">Code</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-total">Total</th>
-                    <th class="product-remove">Remove</th>
-                  </tr>
-                </thead>
-                {{!-- <table class="table">
-                <thead>
-                    <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-code">Code</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-subtotal">Subtotal</th>
-                    <th class="product-remove">&nbsp;</th>
-                    </tr>
-                </thead> --}}
-                <tbody id="cart-items">
-                  {{#each product}}
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="{{this.product.imagefield.[0]}}" style="width: 200px; height: 200px" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">{{this.product.name}}</h2>
-                    </td>
-                    
-                    <td>{{this.product.code}}</td>
-                    <td>Rs.{{this.product.price}}</td>
-                    {{!-- <td>{{this.quantityValue}}</td> --}}
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">&minus;</button>
-                        </div>
-                        <span class="form-control text-center" id="{{this.product._id}}">{{this.quantity}}</span>
-                        {{!-- <input type="text" class="form-control text-center" value="{{this.quantity}}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1"> --}}
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">&plus;</button>
-                        </div>
-                      </div>
+        <div class="col-md-12">
 
-                    </td>
-                    <td>Rs. {{math this.product.price '*' this.quantity}}</td>
-                    <td>
-                      <button class="btn btn-danger btn-sm" type="button" onclick="removeCartproduct('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">X</button>
-                      </td>
-                  </tr>
-                  {{/each}}
+          <div class="card">
+
+            <div class="card-body cart">
+              <div class="col-sm-12 empty-cart-cls text-center">
+                <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                <h3 class="text-dark"><strong>Your Cart is Empty</strong></h3>
+                <h4>Add something to make me happy :)</h4>
+                <a href="/shop-view" class="btn btn-dark cart-btn-transform m-3" data-abc="true">continue shopping</a>
 
 
-                  {{!-- <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/cloth_2.jpg" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Polo Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
+              </div>
+            </div>
+          </div>
 
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
-                  </tr> --}}
-                </tbody>
-              </table>
+
+        </div>
+
+      </div>
+
+    </div>
+    {{/if}}
+
+  </div>
+</div>
+
+<footer class="site-footer border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="footer-heading mb-4">Navigations</h3>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Sell online</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Shopping cart</a></li>
+              <li><a href="#">Store builder</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Mobile commerce</a></li>
+              <li><a href="#">Dropshipping</a></li>
+              <li><a href="#">Website development</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Point of sale</a></li>
+              <li><a href="#">Hardware</a></li>
+              <li><a href="#">Software</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <h3 class="footer-heading mb-4">Promo</h3>
+        <a href="#" class="block-6">
+          <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+          <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
+          <p>Promo from nuary 15 &mdash; 25, 2019</p>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="block-5 mb-5">
+          <h3 class="footer-heading mb-4">Contact Info</h3>
+          <ul class="list-unstyled">
+            <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
+            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+            <li class="email">emailaddress@domain.com</li>
+          </ul>
+        </div>
+
+        <div class="block-7">
+          <form action="#" method="post">
+            <label for="email_subscribe" class="footer-heading">Subscribe</label>
+            <div class="form-group">
+              <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+              <input type="submit" class="btn btn-sm btn-primary" value="Send">
             </div>
           </form>
         </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Enter your coupon code if you have one.</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-primary btn-sm">Apply Coupon</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 pl-5">
-            <div class="row justify-content-end">
-              <div class="col-md-7">
-                <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                  </div>
-                </div>
-                {{!-- <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">Rs.<span id="total">{{totalValue}}</span></strong>
-                  </div>
-                </div> --}}
-                <div class="row mb-5">
-                  <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">Rs.<span id="total">{{totalValue}}</span></strong>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <a href="/checkout" class="btn btn-primary btn-lg py-3 btn-block" >Proceed To Checkout</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-
-    <footer class="site-footer border-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Navigations</h3>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Sell online</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Shopping cart</a></li>
-                  <li><a href="#">Store builder</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Mobile commerce</a></li>
-                  <li><a href="#">Dropshipping</a></li>
-                  <li><a href="#">Website development</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Point of sale</a></li>
-                  <li><a href="#">Hardware</a></li>
-                  <li><a href="#">Software</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Promo</h3>
-            <a href="#" class="block-6">
-              <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-              <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-              <p>Promo from  nuary 15 &mdash; 25, 2019</p>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="block-5 mb-5">
-              <h3 class="footer-heading mb-4">Contact Info</h3>
-              <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
-              </ul>
-            </div>
-
-            <div class="block-7">
-              <form action="#" method="post">
-                <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                <div class="form-group">
-                  <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                  <input type="submit" class="btn btn-sm btn-primary" value="Send">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-          </div>
-          
-        </div>
+    <div class="row pt-5 mt-5 text-center">
+      <div class="col-md-12">
+        <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;
+          <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+          <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+            class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
+            class="text-primary">Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
       </div>
-    </footer>
+
+    </div>
   </div>
-  
+</footer>
+</div>
+
 <script>
-    function changeQuantity(cartId,proId,userId,count){
-    let quantity=parseInt(document.getElementById(proId).innerHTML)
-    count=parseInt(count)
+  function changeQuantity(cartId, proId, userId, price, count) {
+    console.log("" + userId)
+    let quantity = parseInt(document.getElementById(proId).innerHTML)
+    count = parseInt(count)
     $.ajax({
-      url : '/change-product-quantity',
-      data : {
-        user:userId,
-        cart : cartId,
-        product : proId,
-        count : count,
-        quantity:quantity
+      url: '/change-product-quantity',
+      data: {
+        user: userId,
+        cart: cartId,
+        product: proId,
+        count: count,
+        quantity: quantity
       },
-      method :'post',
-      success : (response)=>{
-        console.log("resposne : "+response);
-        if(response.removeProduct){
+      method: 'post',
+      success: (response) => {
+        console.log("resposne : " + response);
+        if (response.removeProduct) {
           document.getElementById('total')
           alert("Product removed from cart");
           location.reload()
-        }else{
-          document.getElementById(proId).innerHTML=quantity+count
-          document.getElementById('total').innerHTML=response.total;
+        } else if (response.status) {
+          document.getElementById(proId).innerHTML = quantity + count
+          document.getElementById('total').innerHTML = response.total;
+          document.getElementById('carttotal').innerHTML = response.total;
+          quantity = quantity + count
+          subtotal = quantity * price
+          document.getElementById('sub' + proId).innerHTML = subtotal.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
+        }
+        else {
+          //alert('out of stock')
+          Toastify({
+            text: "Out of Stock",
+            className: "cartStock",
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            style: {
+              background: "linear-gradient(to right, red,red)",
+            }
+          }).showToast();
         }
       }
     })
   }
-
 </script>
-  
+
 
 <script>
-  function removeCartproduct(cartId,proId,userId,count){
-    let quantity=parseInt(document.getElementById(proId).innerHTML)
-    count=parseInt(count)
+  function removeCartproduct(cartId, proId, userId, count) {
+    let quantity = parseInt(document.getElementById(proId).innerHTML)
+    count = parseInt(count)
     $.ajax({
-      url : '/remove-cart-product',
-      data : {
-        user:userId,
-        cart : cartId,
-        product : proId,
-        count : count,
-        quantity:quantity
+      url: '/remove-cart-product',
+      data: {
+        user: userId,
+        cart: cartId,
+        product: proId,
+        count: count,
+        quantity: quantity
       },
-      method :'post',
-      success : (response)=>{
-        if(response.removeProduct){
-          alert("Product removed from cart")
+      method: 'post',
+      success: (response) => {
+        if (response.removeProduct) {
           location.reload()
-        }else{
-          document.getElementById(proId).innerHTML=quantity+count
-          document.getElementById('total').innerHTML=response.total;
+
+
+        } else {
+          document.getElementById(proId).innerHTML = quantity + count
+          document.getElementById('total').innerHTML = response.total
         }
       }
     })
-  }
+  } 
 </script>
 
+
+<script>
+  $(document).ready(function () {
+    $('#applyButton').click(function () {
+      const couponValue = $('#coupon').val();
+      console.log(couponValue)
+      $.ajax({
+        url: '/apply-coupon',
+        method: 'POST',
+        data: { couponValue },
+        success: (response) => {
+          if (response.isValid) {
+            console.log('valid')
+            if (response.isExpired) {
+              document.getElementById('errMsg').innerHTML = response.errMsg
+            }
+            else {
+              let total = document.getElementById('total').innerHTML
+              let carttotal = total - response.disamount
+              document.getElementById('discount').innerHTML = response.disamount
+              document.getElementById('carttotal').innerHTML = carttotal
+              console.log(response)
+            }
+          }
+          else {
+            document.getElementById('errMsg').innerHTML = response.errMsg
+            console.log(response.errMsg)
+          }
+        }
+      })
+    })
+  })
+</script>
+
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -1,12 +1,12 @@
-<div class="dark-edition">
+<div class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="white" data-background-color="black" >
+    <div class="sidebar" data-color="white" data-background-color="black">
       <!--data-image="../assets/img/sidebar-2.jpg"
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
           Tip 2: you can also add an image using data-image tag
       -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <div class="logo"><a href="" class="simple-text logo-normal">
           Admin Panel
         </a>
       </div>
@@ -19,7 +19,7 @@
             </a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="../admin/user-management">
+            <a class="nav-link" href="../admin/user-management">
               <i class="material-icons">person</i>
               <p>Users Management</p>
             </a>
@@ -30,8 +30,8 @@
               <p>Product Management</p>
             </a>
           </li>
-          
-           <li class="nav-item ">
+
+          <li class="nav-item ">
             <a class="nav-link" href="../admin/order-management">
               <i class="material-icons">bubble_chart</i>
               <p>Order Management</p>
@@ -42,89 +42,142 @@
               <i class="material-icons">category</i>
               <p>Category Management</p>
             </a>
-          </li> 
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin/coupon-management">
+              <i class="material-icons">category</i>
+              <p>Coupon Management</p>
+            </a>
+          </li>
           <li class="nav-item ">
             <a class="nav-link" href="../admin/banner-management">
               <i class="material-icons">library_books</i>
               <p>Banner Management</p>
             </a>
           </li>
-            <!-- <li class="nav-item ">
-                <a class="nav-link" href="./map.html">
-                <i class="material-icons">location_ons</i>
-                <p>Maps</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./notifications.html">
-                <i class="material-icons">notifications</i>
-                <p>Notifications</p>
-                </a>
-            </li> -->
-            <!-- <li class="nav-item active-pro ">
-                    <a class="nav-link" href="./upgrade.html">
-                        <i class="material-icons">unarchive</i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li> -->
+          
         </ul>
       </div>
     </div>
-    <div class="main-panel">
-        <!-- Navbar -->
-      
-        <!-- End Navbar -->
+    <div class="main-panel" style="background-color: rgb(227, 225, 221);">
+      <div class="content">
+        <div class="container-fluid">
 
+          <div class="row">
+            {{!-- <div class=" mx-4 d-flex"><a href="../admin/add-product" class="btn  btn-primary ml-4 ms-auto"
+                style="background-color: ;">Add Product</a>
+            </div> --}}
+            <div class="col-md-12">
 
-      <section class="dark-edition">
-        <div class="row">
-            <div class="mt-5 mx-4 d-flex"><a href="../admin/add-category" class="btn btn-success ms-auto">Add Category</a></div>
+              <div class="card">
+                <div class="card-header card-header-dark" style="background-color: rgb(153, 153, 153);">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h4 class="card-title">Category Details</h4>
+                    </div>
+                    <div class="mx-4 d-flex"><a href="../admin/add-category" class="btn btn-sm btn-dark ml-4 ms-auto"
+                        style="font-size: small;"><strong>Add Category</strong></a></div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table" id="categorytable">
+                      <thead class=" text-dark">
+                        <tr>
+                          <th scope="col"><strong>No.</strong></th>
+                          <th scope="col"><strong>Category Name</strong></th>
+
+                          <th scope="col"><strong>Edit</strong></th>
+                          <th scope="col"><strong>Options</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each categories}}
+                        <tr>
+                          <td>{{inc @index}}</td>
+                          <td>{{this.name}}</td>
+                          {{!-- <td>{{this.code}}</td>
+                          <td>{{this.description}}</td>
+                          <td>Rs.{{this.price}}</td> --}}
+                          {{!-- <td>{{this.image}}</td> --}}
+                          {{!-- <td><img src="{{this.imagefield.[0]}}" alt="{{this.name}}" style="max-width: 100px;">
+                          </td> --}}
+                          <td><a href="/admin/edit-category/{{this._id}}" class="btn btn-sm btn-primary">Edit</a> &nbsp;</td>
+                          <td>
+                            {{#if this.status}}
+                            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#unlistCategory{{this._id}}"
+                              >Unlist</button>
+                          </td>
+                          {{else}}
+                          <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#listCategory{{this._id}}"
+                           >list</button></td>
+                          {{/if}}
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-          
-        <div class="mt-5 mx-4 text-white">
-          <table class="table mt-4 display text-white" id="categoryTable">
-            <thead>
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Category Name</th>
-              
-                <th scope="col">Edit</th>
-                {{!-- <th scope="col">Options</th>  --}}
-              </tr>
-            </thead>
-            <tbody>
-              {{#each categories}}
-                  <tr>
-                    {{!-- <th scope="row">1</th> --}}
-                    <td>{{inc  @index}}</td>
-                    <td>{{this.name}}</td>
-                    {{!-- <td>{{this.code}}</td>
-                    <td>{{this.description}}</td>
-                    <td>Rs.{{this.price}}</td> --}}
-                    {{!-- <td>{{this.image}}</td> --}}
-                    {{!-- <td><img src="{{this.imagefield.[0]}}" alt="{{this.name}}" style="max-width: 100px;"></td>  --}}
-                    <td><a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a> &nbsp;
-                    {{#if this.status}}
-                    <a href="/admin/unlistCategory/{{this._id}}" class="btn btn-danger" onclick="return confirm('Do you want to Unlist {{this.name}}')">Unlist</a></td> 
-                    {{else}}
-                    <a href="/admin/listCategory/{{this._id}}" class="btn btn-success" onclick="return confirm('Do you want List {{this.name}}')">list</a></td> 
-                  {{/if}}
-                  </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-          
-      </section>
+      </div>
     </div>
   </div>
 </div>
-{{!-- <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
+
+{{#each categories}}
+<div class="modal fade" id="unlistCategory{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="unlistCategoryLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="unlistCategoryLabel"><strong>Unlist Category</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Unlist this category ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/unlistCategory/{{this._id}}" class="btn" style="background-color: black;">Unlist</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+
+{{#each categories}}
+<div class="modal fade" id="listCategory{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="listCategoryLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="listCategoryLabel"><strong>List Category</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to List this category ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/listCategory/{{this._id}}" class="btn" style="background-color: black;">List</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
 
 <script>
+  $(document).ready(function () {
+    $('#categorytable').DataTable();
 
-  $(function () {
-    $('#categoryTable').DataTable();
+
   });
-
 </script>

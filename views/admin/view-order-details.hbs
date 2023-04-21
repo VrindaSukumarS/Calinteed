@@ -1,0 +1,185 @@
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 10px;
+    }
+
+    th {
+        position: relative;
+        padding-right: 5em;
+    }
+
+    th::after {
+        content: ":";
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+</style>
+
+<div class="">
+    <div class="wrapper ">
+        <div class="sidebar" data-color="white" data-background-color="black">
+            <!--data-image="../assets/img/sidebar-2.jpg"
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+            <div class="logo"><a href="" class="simple-text logo-normal">
+                    Admin Panel
+                </a></div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/admin">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/admin/user-management">
+                            <i class="material-icons">person</i>
+                            <p>Users Management</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/admin/product-management">
+                            <i class="material-icons">content_paste</i>
+                            <p>Product Management</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/admin/order-management">
+                            <i class="material-icons">bubble_chart</i>
+                            <p>Order Management</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/admin/order-management">
+                            <i class="material-icons">category</i>
+                            <p>Category Management</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/admin/banner-management">
+                            <i class="material-icons">library_books</i>
+                            <p>Banner Management</p>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item ">
+            <a class="nav-link" href="./map.html">
+            <i class="material-icons">location_ons</i>
+            <p>Maps</p>
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="./notifications.html">
+            <i class="material-icons">notifications</i>
+            <p>Notifications</p>
+            </a>
+        </li> -->
+                    <!-- <li class="nav-item active-pro ">
+                <a class="nav-link" href="./upgrade.html">
+                    <i class="material-icons">unarchive</i>
+                    <p>Upgrade to PRO</p>
+                </a>
+            </li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <!-- End Navbar -->
+            <section class="">
+                <div class="content mt-5">
+                    <div class="container-fluid ">
+                        <div class="card">
+                            <div class="card-header card-header-primary mt-2">
+                                <h4 class="card-title">{{details.deliveryDetails.name}}</h4>
+                                {{!-- <p class="card-category">Order details</p> --}}
+                            </div>
+                            <div class="card-body">
+                                <div id="typography">
+                                    <div class="card-title">
+                                        <h2>Order Details</h2>
+                                    </div>
+
+
+
+
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <th>Date</th>
+                                                <td>{{ details.date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Order Id</th>
+                                                <td>{{ details._id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>User Id</th>
+                                                <td>{{ details.userId }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>User Name</th>
+                                                <td>{{ details.deliveryDetails.name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address</th>
+                                                <td>{{ details.deliveryDetails.name }}, <br>{{ details.deliveryDetails.address }}, {{ details.deliveryDetails.country}}, {{ details.deliveryDetails.state}}<br>{{ details.deliveryDetails.pincode}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Phone</th>
+                                                <td>{{ details.deliveryDetails.tel }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Status</th>
+                                                <td>{{ details.status }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Payment Method</th>
+                                                <td>{{ details.paymentMethod }}</td>
+                                            </tr>
+                                            {{!-- <tr>
+                                                <th>Delivery Status</th>
+                                            </tr> --}}
+                                            <tr>
+                                                <th>Total Price</th>
+                                                <td>{{ details.totalAmount }}</td>
+                                            </tr>
+                                            {{#each products}}
+                                            <tr>
+                                                <th>Products</th>
+                                                <td>{{this.product.name}}</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Product Code</th>
+                                                <td>{{this.product.code}}</td>
+                                            </tr>
+                                            <tr>
+                                            <th>Product Image</th>
+                                                <td><img style="height:120px;widht:120px" src="{{this.product.imagefield.[0]}}"></td>
+                                            </tr>
+                                            {{/each}}
+                                            {{!-- <tr>
+                                                <th>Options</th>
+                                            </tr> --}}
+                                            <!-- table rows and data here -->
+                                        </tbody>
+                                    </table>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

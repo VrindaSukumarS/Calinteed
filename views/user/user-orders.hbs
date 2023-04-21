@@ -1,61 +1,144 @@
 <div class="bg-light py-3">
-    <div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">My Orders</strong></div>
+      <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <a href="/userprofile">My
+          Account</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">My Orders</strong></div>
     </div>
-    </div>
+  </div>
 </div>
 
 <div class="site-section">
-    <div class="container">
-        <div class="col-md-12">
-            <h2 class="h3 mb-3 text-black">My Orders</h2>
-        </div>
-        <div class="row mb-5">
-          <form class="col-md-12" method="">
-            <div class="site-blocks-table">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Date</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Address</th>
-                    <th class="product-quantity">Order Id</th>
-                    <th class="product-total">Status</th>
-                    <th class="product-total">Payment Method</th>
-                    <th class="product-remove">View Details</th>
-                  </tr>
-                </thead>
-                
-                <tbody id="cart-items">
-                  {{#each orders}}
-                  <tr>
-                    
-                    <td class="product-name">
-                      <h2 class="h5 text-black">{{this.date}}</h2>
-                    </td>
-                    
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Rs.{{this.totalAmount}}</h2>
-                    </td>
-                    
-                    <td>{{this.deliveryDetails.address}}</td>
-                    <td>{{this._id}}</td>
-                    <td>{{this.status}}</td>
-                    <td>{{this.paymentMethod}}</td>
-                    
-                    <td>
-                        <a href="/view-order-products/{{this._id}}" class="buy-now btn btn-sm btn-dark">View Details</a></p>
-                    </td>
-                  </tr>
-                  {{/each}}
-
-
-                </tbody>
-              </table>
-            </div>
-          </form>
-        </div>
+  <div class="container">
+    <div class="col-md-12">
+      <h2 class="h3 mb-3 text-black">My Orders</h2>
     </div>
-</div> 
+    <div class="row mb-5">
+      <form class="col-md-12" method="">
+        <div class="site-blocks-table">
+          <table class="table" style="border: none;">
+            <thead>
+              <tr>
+                <th class="product-thumbnail">Date</th>
+                <th class="product-price">Price</th>
+                <th class="product-quantity">Address</th>
+                <th class="product-quantity">Order Id</th>
+                <th class="product-total">Status</th>
+                <th class="product-total">Payment Method</th>
+                <th class="product-remove">View Details</th>
+                <th class="product-remove">Options</th>
+              </tr>
+            </thead>
 
+            <tbody id="cart-items" style="color: black;">
+              {{#each orders}}
+              <tr>
+
+                <td class="product-name">
+                  <h2 class="h6 text-black">{{this.date}}</h2>
+                </td>
+
+                <td class="product-name">
+                  <h2 class="h6 text-black">{{this.totalAmount}}</h2>
+                </td>
+
+                <td>
+                  <h6 class="text-black">{{this.deliveryDetails.name}},<br>{{this.deliveryDetails.address}}</h6>
+                </td>
+                <td>
+                  <h6 class="text-black">{{this._id}}</h6>
+                </td>
+                <td>
+                  <h6 class="text-black">{{this.status}}</h6>
+                </td>
+                <td>
+                  <h6 class="text-black">{{this.paymentMethod}}</h6>
+                </td>
+
+                <td>
+                  <a href="/view-order-products/{{this._id}}" class="buy-now btn btn-xs btn-dark"
+                    style="font-size: small;">View Details</a>
+                </td>
+
+                {{#if this.isCancelled}}
+                <td><a class=" buy-now btn btn-xs btn-danger text-white disabled "
+                    style="font-size: small;">Cancelled</a></td>
+                {{else if this.noReturn}}
+                <td><a class=" buy-now btn btn-xs text-white disabled"
+                    style="font-size: small;background-color:#07c12f">Delivered</a></td>
+                {{else if this.isDelivered}}
+                <td><a href="/return-request-order/{{this._id}}" class=" buy-now btn btn-xs btn-warning text-white"
+                    style="font-size: small;">Return</a></td>
+                {{else if this.isRequested}}
+                <td><a href="/return-request-order/{{this._id}}" class=" buy-now btn btn-xxs btn-warning text-white" data-toggle="modal" data-target="#return-request-order{{this._id}}"
+                    style="font-size: small;">Return<br> requested</a></td>
+                {{else if this.isReturned}}
+                <td><a class=" buy-now btn btn-xs text-white disabled"
+                    style="font-size: small;background-color:#f57c00">Returned</a></td>
+
+                {{else}}
+                <td><a href="/cancel-order/{{this._id}}" class=" buy-now btn btn-xs btn-danger text-white" data-toggle="modal" data-target="#userCancelOrder{{this._id}}"
+                    style="font-size: small;">Cancel</a></td>
+                {{/if}}
+                {{!-- </td> --}}
+
+              </tr>
+              {{/each}}
+
+
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{{#each orders}}
+
+<div class="modal fade mt-5" id="userCancelOrder{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="userCancelOrderLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="userCancelOrderLabel"><strong>Cancel Order</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Cancel this order ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/cancel-order/{{this._id}}" class="btn text-white" style="background-color: black;">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/each}}
+
+
+{{#each orders}}
+
+<div class="modal fade mt-5" id="return-request-order{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="return-request-orderLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="return-request-orderLabel"><strong>Return Order</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Return this order ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/return-request-order/{{this._id}}" class="btn text-white" style="background-color: black;">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/each}}

@@ -1,4 +1,4 @@
-<div class="dark-edition">
+<div class="">
     <div class="wrapper ">
 
         <div class="content">
@@ -6,11 +6,11 @@
                 <div class="row d-flex" style="">
                     <div class="col-md-8 mx-auto align-items-center" style="margin-top: 10rem;">
                         <div class="card">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title">Admin Login</h4>
+                            <div class="card-header " style="background-color:black">
+                                <h4 class="card-title text-white">Admin Login</h4>
                                 <!-- <p class="card-category">Complete your profile</p> -->
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: rgb(208, 207, 207);">
                                 <form action="/admin/login" method="post">
                                     <div class="row">
                                         <!-- <div class="col-md-5">
@@ -27,7 +27,7 @@
                                         </div> -->
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">Email address</label>
+                                                <label class="bmd-label-floating text-dark"><strong>Email Id</strong></label>
                                                 <input type="email" class="form-control" name="email" id="email">
                                             </div>
                                         </div>
@@ -49,11 +49,23 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="bmd-label-floating">Password</label>
+                                                <label class="bmd-label-floating text-dark"><strong> Password </strong></label>
                                                 <input type="password" class="form-control" name="password" id="password">
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                             {{#if adminLoginErr}} 
+                                             <p class="text-danger text-bold"><strong>{{adminLoginErr}}</strong></p>
+                                            {{/if}}
+                                            <div class="form-group">
+                                                <button type="submit" class="btn float-right text-white" style="background-color: black;">submit</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
                                     <!-- <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -85,10 +97,7 @@
                                             </div>
                                         </div> -->
                                     <!-- </div> -->
-                                     {{!-- {{#if loginErr}}
-                                    <p class="error text-danger" style="color: red;">{{loginErr}}</p>
-                                    {{/if}} --}}
-                                    <button type="submit" class="btn btn-primary pull-right">submit</button>
+                                    
                                     {{!-- <div class="clearfix"></div> --}}
                                 </form>
                             </div>

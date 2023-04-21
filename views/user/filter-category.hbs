@@ -1,148 +1,255 @@
+<style>
+    .favorite-icon {
+        position: absolute;
+        right: 22px;
+        font-size: 20px;
+        color: red;
+    }
+</style>
+
+
 <div class="site-wrap">
 
 
     <div class="bg-light py-3">
         <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong></div>
-        </div>
+            <div class="row">
+                {{#if categoryName}}
+                <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span><a
+                        href="/shop-view">Shop</a> <span class="mx-2 mb-0">/</span> <strong
+                        class="text-black">{{this.categoryName}}</strong></div>
+                {{else}}
+                <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span><a
+                        href="/shop-view">Shop</a> </div>
+                {{/if}}
+            </div>
         </div>
     </div>
 
     <div class="site-section">
         <div class="container">
 
-        <div class="row mb-5">
-            <div class="col-md-9 order-2">
+            <div class="row mb-5">
+                <div class="col-md-9 order-2">
 
-            <div class="row">
-                <div class="col-md-12 mb-5">
-                <div class="float-md-left mb-4"><h2 class="text-black h5">Shop All</h2></div>
-                <div class="d-flex">
-                    <div class="dropdown mr-1 ml-md-auto">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Latest
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                        <a class="dropdown-item" href="#">Oversized T-shirts</a>
-                        <a class="dropdown-item" href="#">Hoodies</a>
-                        <a class="dropdown-item" href="#">Caps</a>
+                    <div class="row">
+                        <div class="col-md-12 mb-5">
+                            <div class="float-md-left mb-4">
+                                <h2 class="text-black h5">Shop All</h2>
+                            </div>
+                            <div class="d-flex">
+                                <div class="dropdown mr-1 ml-md-auto">
+                                    <form action="/product-search" method="post" class="site-block-top-search">
+                                        <span class="icon icon-search text-dark"></span>
+                                        <input type="text" class="form-control border-0" value="" name="search"
+                                            placeholder="Search here">
+                                        <button type="submit" hidden></button>
+                                    </form>
+                                    {{!-- <button type="button" class="btn btn-secondary btn-sm dropdown-toggle"
+                                        id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Latest
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                        <a class="dropdown-item" href="#">Oversized T-shirts</a>
+                                        <a class="dropdown-item" href="#">Hoodies</a>
+                                        <a class="dropdown-item" href="#">Caps</a>
+                                    </div> --}}
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle"
+                                        id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                                        {{!-- <a class="dropdown-item" href="#">Relevance</a>
+                                        <a class="dropdown-item" href="#">Name, A to Z</a>
+                                        <a class="dropdown-item" href="#">Name, Z to A</a> --}}
+                                        {{!-- <div class="dropdown-divider"></div> --}}
+                                        <a class="dropdown-item" href="/categorylow-high-price">Price: low to high</a>
+                                        <a class="dropdown-item" href="/categoryhigh-low-price">Price: high to low</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="container ">
+
+
+                        <div class="row pb-5 mb-5">
+                            {{#each filteredProducts}}
+                            {{#if (isGreater this.stock 0)}}
+                            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+
+                                <div class="card rounded shadow-sm border-0">
+
+                                    {{!-- <figure class="block-4-image"> --}}
+
+                                        <div class="card-body p-0"><a href="/product-view/{{this._id}}"><img
+                                                    src="{{this.imagefield.[0]}}" alt="Image placeholder"
+                                                    class="img-fluid d-block mx-auto mb-3"
+                                                    style="object-fit: cover; width:500px; height:325px"></a><span>
+                                                <button onfocus="none" onclick="wishlist('{{this._id}}')" id="wishlist"
+                                                    class="material-icons favorite-icon icon icon-heart-o "
+                                                    style="border: none;"></button></span>
+                                            <h5 class="text-dark">{{this.name}}</a></h5>
+                                            <p class=" text-dark font-bold"><strong>{{this.price}}</strong>
+                                            </p>
+                                            <ul class="list-inline small">
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star-o text-dark"></i></li>
+                                            </ul>
+
+                                        </div>
+                                        {{!--
+                                    </figure> --}}
+
+
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+
+                                <div class="card rounded shadow-sm border-0">
+
+                                    {{!-- <figure class="block-4-image"> --}}
+
+                                        <div class="card-body p-0"><a href="/product-view/{{this._id}}"><img
+                                                    src="{{this.imagefield.[0]}}" alt="Image placeholder"
+                                                    class="img-fluid d-block mx-auto mb-3"
+                                                    style="object-fit: cover; width:500px; height:325px;opacity: 0.5;"></a><span>
+                                                <button onfocus="none" onclick="wishlist('{{this._id}}')" id="wishlist"
+                                                    class="material-icons favorite-icon icon icon-heart-o "
+                                                    style="border: none;"></button></span>
+                                            <div class="out-of-stock text-danger" style="position: absolute;transform: translate(-50%, -50%); top: 40%;left: 50%;font-weight: bold;">Out of Stock</div>
+                                            <h5 class="text-dark">{{this.name}}</a></h5>
+                                            <p class=" text-dark font-bold"><strong>{{this.price}}</strong>
+                                            </p>
+                                            <ul class="list-inline small">
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star text-dark"></i></li>
+                                                <li class="list-inline-item m-0"><i
+                                                        class="icon icon-star-o text-dark"></i></li>
+                                            </ul>
+
+                                        </div>
+                                        {{!--
+                                    </figure> --}}
+
+
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{/each}}
+
+
+                        </div>
                     </div>
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <a class="dropdown-item" href="#">Relevance</a>
-                        <a class="dropdown-item" href="#">Name, A to Z</a>
-                        <a class="dropdown-item" href="#">Name, Z to A</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Price, low to high</a>
-                        <a class="dropdown-item" href="#">Price, high to low</a>
+                    <div class="row" data-aos="fade-up">
+                        <div class="col-md-12 text-center">
+                            <div class="site-block-27">
+                                <div class="col d-flex justify-content-center pagination text-dark">
+                                </div>
+                                <ul>
+
+                                    <input type="text" style="display: none;x" id="totalCount" value="{{productCount}}">
+                                    <input type="text" style="display: none;" id="currentPage" value="{{currentPage}}">
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
+                </div>
+
+
+
+
+
+                <div class="col-md-3 order-1 mb-5 mb-md-0">
+                    <div class="border p-4 rounded mb-4">
+                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+
+                        <ul class="list-unstyled mb-0">
+                            {{#each categories}}
+                            <li class="mb-1"><a href="/filter-category/{{this._id}}"
+                                    class="d-flex"><span>{{this.name}}</span> <span
+                                        class="text-black ml-auto">(2,220)</span></a></li>
+                            {{!-- <li class="mb-1"><a href="#" class="d-flex"><span>Hoodies</span> <span
+                                        class="text-black ml-auto">(2,550)</span></a></li>
+                            <li class="mb-1"><a href="#" class="d-flex"><span>Shirts</span> <span
+                                        class="text-black ml-auto">(2,124)</span></a></li>
+                            <li class="mb-1"><a href="#" class="d-flex"><span>Caps</span> <span
+                                        class="text-black ml-auto">(2,124)</span></a></li> --}}
+                            {{/each}}
+                        </ul>
+                    </div>
+
+                    <div class="border p-4 rounded mb-4">
+                        {{!-- <div class="mb-4">
+                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                            <div id="slider-range" class="border-primary"></div>
+                            <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white"
+                                disabled="" />
+                        </div> --}}
+
+
+                        {{!-- <form action="/filter-price" method="post"> --}}
+                            <div class="mb-4">
+                                <h3 class="mb-3 h6 text-black d-block">Filter By Price</h3>
+                                <div class="range-slider">
+                                    <input type="text" class="js-range-slider" value="" />
+                                </div>
+
+                                <div class="extra-controls mb-4">
+                                    <input type="text" class="js-input-from w-75" hidden id="selectMinPrice"
+                                        name="minPrice" value="{{minPrice}}" />
+                                    <input type="text" class="js-input-to w-75" hidden id="selectMaxPrice"
+                                        name="maxPrice" value="{{maxPrice}}" />
+                                    <div class="text-center">
+                                        <a class="btn mt-3" style="background-color: rgb(60, 59, 59);color: white;"
+                                             id="apply">apply</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {{!-- </form> --}}
+                        {{!-- <div class="mb-4">
+                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+                            <a href="#" class="d-flex color-item align-items-center">
+                                <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span
+                                    class="text-black">Red (2,429)</span>
+                            </a>
+                            <a href="#" class="d-flex color-item align-items-center">
+                                <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span
+                                    class="text-black">Green (2,298)</span>
+                            </a>
+                            <a href="#" class="d-flex color-item align-items-center">
+                                <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span
+                                    class="text-black">Blue (1,075)</span>
+                            </a>
+                            <a href="#" class="d-flex color-item align-items-center">
+                                <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span
+                                    class="text-black">Purple (1,075)</span>
+                            </a>
+                        </div> --}}
+
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="row mb-5"  >
-                {{#each products}}
-                <div class="col-sm-6 col-lg-4 mb-4"  data-aos="fade-up">
-                    
-                    <div class="block-4 text-center border"  >
-                    
-                    <figure class="block-4-image" >
-                        <a href="/product-view/{{this._id}}" ><img src="{{this.imagefield.[0]}}" alt="Image placeholder" class="img-fluid" ></a>
-                        {{!-- style="height: 20rem;" --}}
-                        {{!-- <a href="#"><span class="icon icon-heart-o"></span></a> --}}
-                    </figure>
-                    <div class="block-4-text">
-                        <h3><a href="">{{this.name}}</a></h3>
-                        {{!-- <p class="mb-0">{{this.description}}</p> --}}
-                        <p class="text-primary font-weight-bold">Rs.{{this.price}}</p>
-                    </div>
-                    
-                    </div>
-                </div>
-                {{/each}}
-        
-
-            </div>
-            <div class="row" data-aos="fade-up">
-                <div class="col-md-12 text-center">
-                <div class="site-block-27">
-                    <ul>
-                    <li><a href="#">&lt;</a></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&gt;</a></li>
-                    </ul>
-                </div>
-                </div>
-            </div>
             </div>
 
-            <div class="col-md-3 order-1 mb-5 mb-md-0">
-            <div class="border p-4 rounded mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
-               
-                <ul class="list-unstyled mb-0">
-                {{#each categories}}
-                <li class="mb-1"><a href="/filter-category/{{this._id}}" class="d-flex"><span>{{this.name}}</span> <span class="text-black ml-auto">(2,220)</span></a></li>
-                {{!-- <li class="mb-1"><a href="#" class="d-flex"><span>Hoodies</span> <span class="text-black ml-auto">(2,550)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Shirts</span> <span class="text-black ml-auto">(2,124)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Caps</span> <span class="text-black ml-auto">(2,124)</span></a></li> --}}
-              {{/each}}
-              </ul> 
-            </div>
-
-            <div class="border p-4 rounded mb-4">
-                <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-                <div id="slider-range" class="border-primary"></div>
-                <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
-                </div>
-                
-
-                 <form action="/filter-category" method="post">
-              <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Price</h3>
-                <label for="s_sm" class="d-flex">
-                  <input type="radio" id="s_sm" name="price" value="500" class="mr-2 mt-1"> <span class="text-black">Below Rs.500</span>
-                </label>
-                <label for="s_md" class="d-flex">
-                  <input type="radio" id="s_md" name="price" value="2000" class="mr-2 mt-1"> <span class="text-black">Below Rs.2000</span>
-                </label>
-                <label for="s_lg" class="d-flex">
-                  <input type="radio" id="s_lg" name="price" value="5000" class="mr-2 mt-1"> <span class="text-black">Below Rs.5000 </span>
-                </label>
-                <label for="s_lg" class="d-flex">
-                  <button class="buy-now btn btn-sm btn-dark" type="submit">Filter</button>
-                </label>
-              </div>
-              </form>
-                <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
-                <a href="#" class="d-flex color-item align-items-center" >
-                    <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
-                </a>
-                <a href="#" class="d-flex color-item align-items-center" >
-                    <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green (2,298)</span>
-                </a>
-                <a href="#" class="d-flex color-item align-items-center" >
-                    <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Blue (1,075)</span>
-                </a>
-                <a href="#" class="d-flex color-item align-items-center" >
-                    <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
-                </a>
-                </div>
-
-            </div>
-            </div>
-        </div>
-
-        <!-- <div class="row">
+            <!-- <div class="row">
             <div class="col-md-12">
             <div class="site-section site-blocks-2">
                 <div class="row justify-content-center text-center mb-5">
@@ -189,81 +296,116 @@
             </div>
             </div>
         </div> -->
-        
+
         </div>
     </div>
 
-    <footer class="site-footer border-top">
+    {{!-- <footer class="site-footer border-top">
         <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="row">
-                <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Navigations</h3>
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="footer-heading mb-4">Navigations</h3>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Sell online</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Shopping cart</a></li>
+                                <li><a href="#">Store builder</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Mobile commerce</a></li>
+                                <li><a href="#">Dropshipping</a></li>
+                                <li><a href="#">Website development</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Point of sale</a></li>
+                                <li><a href="#">Hardware</a></li>
+                                <li><a href="#">Software</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                    <li><a href="#">Sell online</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Shopping cart</a></li>
-                    <li><a href="#">Store builder</a></li>
-                </ul>
+                <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <h3 class="footer-heading mb-4">Promo</h3>
+                    <a href="#" class="block-6">
+                        <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+                        <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
+                        <p>Promo from nuary 15 &mdash; 25, 2019</p>
+                    </a>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                    <li><a href="#">Mobile commerce</a></li>
-                    <li><a href="#">Dropshipping</a></li>
-                    <li><a href="#">Website development</a></li>
-                </ul>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                    <li><a href="#">Point of sale</a></li>
-                    <li><a href="#">Hardware</a></li>
-                    <li><a href="#">Software</a></li>
-                </ul>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Promo</h3>
-            <a href="#" class="block-6">
-                <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-                <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-                <p>Promo from  nuary 15 &mdash; 25, 2019</p>
-            </a>
-            </div>
-            <div class="col-md-6 col-lg-3">
-            <div class="block-5 mb-5">
-                <h3 class="footer-heading mb-4">Contact Info</h3>
-                <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
-                </ul>
-            </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="block-5 mb-5">
+                        <h3 class="footer-heading mb-4">Contact Info</h3>
+                        <ul class="list-unstyled">
+                            <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
+                            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+                            <li class="email">emailaddress@domain.com</li>
+                        </ul>
+                    </div>
 
-            <div class="block-7">
-                <form action="#" method="post">
-                <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                <div class="form-group">
-                    <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                    <input type="submit" class="btn btn-sm btn-primary" value="Send">
+                    <div class="block-7">
+                        <form action="#" method="post">
+                            <label for="email_subscribe" class="footer-heading">Subscribe</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+                                <input type="submit" class="btn btn-sm btn-primary" value="Send">
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                </form>
             </div>
+            <div class="row pt-5 mt-5 text-center">
+                <div class="col-md-12">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script data-cfasync="false"
+                            src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                            target="_blank" class="text-primary">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+
             </div>
         </div>
-        <div class="row pt-5 mt-5 text-center">
-            <div class="col-md-12">
-            <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-            </div>
-            
-        </div>
-        </div>
-    </footer>
+    </footer> --}}
 </div>
+<script>
+   
+   const applyBtn = document.getElementById('apply')
+    applyBtn.addEventListener('click',function(event){
+        
+         let  minPrice= document.getElementById('selectMinPrice').value
+         let maxPrice = document.getElementById('selectMaxPrice').value        
+        location.assign(`/filter-priceForCategory?minvalue=${minPrice}&&maxvalue=${maxPrice}`)
+
+    })
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const totalCountInput = document.getElementById('totalCount');
+        const totalCount = Number(totalCountInput.value);
+        const currentPageInput = document.getElementById('currentPage');
+        const currentPage = Number(currentPageInput.value);
+        const totalPages = Math.ceil(totalCount / 6);
+        let page = currentPage || 1;
+        const paginationElement = document.querySelector('.pagination');
+        let pageLinks = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            pageLinks += `<ul style="list-style-type: none; "><li class="page-item${i === page ? ' active' : ''}"><a class="page-link" style="color: black;" href="?page=${i}">${i}</a></li></ul>`;
+        }
+        paginationElement.innerHTML = pageLinks;
+    });
+</script>

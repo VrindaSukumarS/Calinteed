@@ -1,0 +1,69 @@
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong
+                    class="text-black"><a href="/userprofile/{{user._id}}">My Account</a></strong><span
+                    class="mx-2 mb-0">/</span> <strong class="text-black">My Rewards</strong></div>
+        </div>
+    </div>
+</div>
+<div class="site-section">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">{{user.name}}</h2>
+            </div>
+            <div class="col-md-5 ml-auto">
+                <div class="p-4 border mb-3">
+                    <a href="/userprofile/{{user._id}}"><span class="d-block text-black h6 text-uppercase">My
+                            Account</span></a>
+                    <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/user-address"><span class="d-block text-black h6 text-uppercase">My Addresses</span></a>
+                    <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/wishlist"> <span class="d-block text-black h6 text-uppercase">My Wishlist</span></a>
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/user-orders"><span class="d-block text-black h6 text-uppercase">My Orders</span></a>
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/my-wallet"><span class="d-block text-primary h6 text-uppercase">My Wallet</span></a>
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/change-password"><span class="d-block text-black h6 text-uppercase">Change
+                            Password</span></a>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="p-3 border text-primary">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <h2 class="h4 mb-3 text-black">My Wallet</h2>
+                        </div>
+                    </div>
+                    ₹ {{this.wallet.wallet}}.00
+                </div>
+                
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+    var cpnBtn = document.getElementById("cpnBtn");
+    var cpnCode = document.getElementById("cpnCode");
+
+    cpnBtn.onclick = function () {
+        navigator.clipboard.writeText(cpnCode.innerHTML);
+        cpnBtn.innerHTML = "COPIED";
+        setTimeout(function () {
+            cpnBtn.innerHTML = "COPY CODE";
+        }, 3000);
+    }
+</script>

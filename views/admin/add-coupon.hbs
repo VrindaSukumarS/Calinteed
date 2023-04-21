@@ -1,0 +1,110 @@
+<div class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-background-color="black">
+      <!--data-image="../assets/img/sidebar-2.jpg"
+          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+          Tip 2: you can also add an image using data-image tag
+      -->
+      <div class="logo"><a href="" class="simple-text logo-normal">
+          Admin Panel
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/user-management">
+              <i class="material-icons">person</i>
+              <p>Users Management</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/product-management">
+              <i class="material-icons">content_paste</i>
+              <p>Product Management</p>
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/order-management">
+              <i class="material-icons">bubble_chart</i>
+              <p>Order Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/category-management">
+              <i class="material-icons">category</i>
+              <p>Category Management</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../admin/coupon-management">
+              <i class="material-icons">category</i>
+              <p>Coupon Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/banner-management">
+              <i class="material-icons">library_books</i>
+              <p>Banner Management</p>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+
+      <!-- End Navbar -->
+
+
+      <section class="">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 mt-5 text-dark">
+              <h2 class="mt-5 mb-3" style="font-size: 1.5rem;"><strong> Add Coupon </strong> </h2>
+              <form action="/admin/add-coupon/{{coupon._id}}"  method="post">
+                <div class="mb-3">
+                  <label for="name" class="form-label text-dark"><strong>Coupon Name</strong></label>
+                  <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="code" class="form-label text-dark"><strong>Coupon Code</strong></label>
+                  <input type="text" class="form-control " name="code" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="disamount" class="form-label text-dark"><strong>Discount Amount</strong></label>
+                  <input type="integer" class="form-control " name="disamount" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="expirydate" class="form-label text-dark"><strong>Expiry Date</strong></label>
+                  <input type="date" class="form-control " name="expirydate" aria-describedby="emailHelp">
+                </div>
+                {{#if couponErr}}
+                <p>{{couponErr}}</p>
+                {{/if}}
+                <div class="text-center mt-3 mb-3">
+                  <button type="submit" class="btn btn-success"><a href="/admin/coupon-management" class="text-white">Submit</a></button>
+                  {{!--
+                </div>
+                <div class="text-center mt-4"> --}}
+                  <button type="button" class="btn "style="background-color: rgba(84,110,122,1.0)	;"><a href="/admin/coupon-management" style="color: white;">Cancel</a></button>
+                </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="/javascripts/signup-validation.js"></script>

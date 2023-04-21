@@ -1,98 +1,164 @@
 <div class="bg-light py-3">
     <div class="container">
-    <div class="row">
-        <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{user.name}}</strong></div>
-    </div>
-    </div>
-</div>  
-<div class="site-section">
-    <div class="container">
-    <div class="row ">
-        <div class="col-md-12">
-        <h2 class="h3 mb-3 text-black">{{user.name}}</h2>
+        <div class="row">
+            <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong
+                    class="text-black">{{user.name}}</strong></div>
         </div>
-        <div class="col-md-5 ml-auto">
-        <div class="p-4 border mb-3">
-            <a href="/userprofile/{{user._id}}"><span class="d-block text-primary h6 text-uppercase" >My Account</span></a>
-            <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
-        </div>
-        <div class="p-4 border mb-3">
-            <a href="/user-address"><span class="d-block text-black h6 text-uppercase">My Addresses</span></a>
-            <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
-        </div>
-        <div class="p-4 border mb-3">
-            <a href="/wishlist"> <span class="d-block text-black h6 text-uppercase">My Wishlist</span></a>
-        </div>
-        <div class="p-4 border mb-3">
-            <a href="/user-orders"><span class="d-block text-black h6 text-uppercase">My Orders</span></a>
-        </div>
-        <div class="p-4 border mb-3">
-            <span class="d-block text-black h6 text-uppercase">Change Password</span>
-        </div>
-        </div>
-        <div class="col-md-7">
-        <div class="p-3 border text-primary">
-
-        <form action="/userprofile/{{user._id}}" method="post">
-            <div class="form-group row">
-            <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black">My Account</h2>
-            </div>
-            </div>
-            
-            <!-- <div class="p-3 p-lg-5 border"> -->
-            <div class="form-group row">
-                <div class="col-md-12">
-                <label for="name" class="text-black">User Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
-                </div>
-                {{!-- <div class="col-md-6">
-                <label for="lastname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="lastname" name="lastname">
-                </div> --}}
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                <label for="email" class="text-black">Email <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                <label for="phone" class="text-black">Mobile Number </label>
-                <input type="tel" class="form-control" id="phone" name="phone" value="{{user.tel}}">
-                </div>
-            </div>
-
-            {{!-- <div class="form-group row">
-                <div class="col-md-12">
-                <label for="message" class="text-black">Message </label>
-                <textarea name="message" id="message" cols="30" rows="7" class="form-control"></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-12">
-                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message">
-                </div>
-            </div> --}}
-            </div>
-        </form>
-        </div>
-        <!-- <div class="col-md-5 ml-auto">
-        <div class="p-4 border mb-3">
-            <span class="d-block text-primary h6 text-uppercase">New York</span>
-            <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
-        </div>
-        <div class="p-4 border mb-3">
-            <span class="d-block text-primary h6 text-uppercase">London</span>
-            <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
-        </div>
-        <div class="p-4 border mb-3">
-            <span class="d-block text-primary h6 text-uppercase">Canada</span>
-            <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p>
-        </div>
-
-        </div> -->
-    </div>
     </div>
 </div>
+<div class="site-section">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">{{user.name}}</h2>
+            </div>
+            <div class="col-md-5 ml-auto">
+                <div class="p-4 border mb-3">
+                    <a href="/userprofile/{{user._id}}"><span class="d-block text-primary h6 text-uppercase">My
+                            Account</span></a>
+                    <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/user-address/{{user._id}}"><span class="d-block text-black h6 text-uppercase">My Addresses</span></a>
+                    <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/wishlist"> <span class="d-block text-black h6 text-uppercase">My Wishlist</span></a>
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/user-orders"><span class="d-block text-black h6 text-uppercase">My Orders</span></a>
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/my-wallet"><span class="d-block text-black h6 text-uppercase">My Wallet</span></a>
+                </div>
+                <div class="p-4 border mb-3">
+                    <a href="/change-password"><span class="d-block text-black h6 text-uppercase">Change Password</span></a>
+                </div>
+                
+            </div>
+            <div class="col-md-7">
+                <div class="p-3 border text-primary">
+
+                    <form id="user-profile-form" >
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <h2 class="h3 mb-3 text-black">My Account</h2>
+                            </div>
+                        </div>
+
+                        <!-- <div class="p-3 p-lg-5 border"> -->
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="name" class="text-black">User Name <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{user.name}}"
+                                    disabled>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="email" class="text-black">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{user.email}}"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="tel" class="text-black">Mobile Number </label>
+                                <input type="tel" class="form-control" id="tel" name="tel" value="{{user.tel}}"
+                                    disabled>
+                            </div>
+                        </div>
+
+                        {{!-- <button onclick="editProfile()" id="edit-button"
+                            class="buy-now btn btn-sm btn-dark">Edit</button> --}}
+                        <button type="button" class="buy-now btn btn-sm btn-dark" data-toggle="modal"
+                            data-target="#exampleModalCenter">
+                            Edit
+                        </button>
+
+                    </form>
+                </div>
+
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Edit Profile</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/userprofile" method="post">
+                                    <div class="form-group row">
+                                        <div class="col-xl-12">
+                                            <label for="name" class="text-black">Full Name <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" id="name" name="name" class="form-control"
+                                                onkeyup="validateName()" value="{{user.name}}" />
+                                            <span id="name-error" class="validation-label" style="color: red;"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-xl-12">
+                                            <label for="email" class="text-black">Email Id<span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <input type="email" id="email" name="email" class="form-control"
+                                                onkeyup="validateEmail()" value="{{user.email}}" />
+                                            <span id="email-error" class="validation-label" style="color: red;"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-xl-12">
+                                            <label for="tel" class="text-black">Mobile Number<span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="tel" id="tel" name="tel" class="form-control"
+                                                onkeyup="validateTel()" value="{{user.tel}}" />
+                                            <span id="tel-error" class="validation-label" style="color: red;"></span>
+                                        </div>
+                                    </div>
+                                        {{!-- </div> --}}
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-dark" onclick="return validateForm()">Savechanges</button>
+                                    </div>
+                                </form>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    
+    <script>
+      //  function editProfile() {
+      //      var form = document.getElementById('user-profile-form');
+      //      var nameInput = document.getElementById('name');
+      //      var emailInput = document.getElementById('email');
+      //      var telInput = document.getElementById('tel');
+//
+//      //      nameInput.disabled = false;
+      //      emailInput.disabled = false;
+      //      telInput.disabled = false;
+
+      //      form.submit();
+      //      location.reload();
+      //  }
+    </script>

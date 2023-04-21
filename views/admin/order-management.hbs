@@ -1,115 +1,282 @@
-<div class="dark-edition">
+<style>
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+</style>
+<div class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="white" data-background-color="black" >
-    <!--data-image="../assets/img/sidebar-2.jpg"
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    <div class="sidebar" data-color="white" data-background-color="black">
+      <!--data-image="../assets/img/sidebar-2.jpg"
+          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-  <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-      Admin Panel
-    </a></div>
-  <div class="sidebar-wrapper">
-    <ul class="nav">
-      <li class="nav-item ">
-        <a class="nav-link" href="/admin">
-          <i class="material-icons">dashboard</i>
-          <p>Dashboard</p>
+          Tip 2: you can also add an image using data-image tag
+      -->
+      <div class="logo"><a href="" class="simple-text logo-normal">
+          Admin Panel
         </a>
-      </li>
-      <li class="nav-item ">
-          <a class="nav-link" href="../admin/user-management">
-          <i class="material-icons">person</i>
-          <p>Users Management</p>
-        </a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="../admin/product-management">
-          <i class="material-icons">content_paste</i>
-          <p>Product Management</p>
-        </a>
-      </li>
-      
-        <li class="nav-item active">
-        <a class="nav-link" href="../admin/order-management">
-          <i class="material-icons">bubble_chart</i>
-          <p>Order Management</p>
-        </a>
-      </li> 
-      <li class="nav-item ">
-        <a class="nav-link" href="../admin/category-management">
-          <i class="material-icons">category</i>
-          <p>Category Management</p>
-        </a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="../admin/banner-management">
-          <i class="material-icons">library_books</i>
-          <p>Banner Management</p>
-        </a>
-      </li>
-        <!-- <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
-            <i class="material-icons">location_ons</i>
-            <p>Maps</p>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
             </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-            <i class="material-icons">notifications</i>
-            <p>Notifications</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/user-management">
+              <i class="material-icons">person</i>
+              <p>Users Management</p>
             </a>
-        </li> -->
-        <!-- <li class="nav-item active-pro ">
-                <a class="nav-link" href="./upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../admin/product-management">
+              <i class="material-icons">content_paste</i>
+              <p>Product Management</p>
+            </a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="../admin/order-management">
+              <i class="material-icons">bubble_chart</i>
+              <p>Order Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/category-management">
+              <i class="material-icons">category</i>
+              <p>Category Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin/coupon-management">
+              <i class="material-icons">category</i>
+              <p>Coupon Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="../admin/banner-management">
+              <i class="material-icons">library_books</i>
+              <p>Banner Management</p>
+            </a>
+          </li>
+
         </ul>
+      </div>
     </div>
-    </div>
-    <div class="main-panel">
-    <!-- Navbar -->
-    <!-- End Navbar -->
-     <section class="dark-edition">
-        {{!-- <div class="row">
-            <div class="mt-5 mx-4 d-flex"><a href="../admin/add-product" class="btn btn-success ms-auto">Add Product</a></div>
-        </div> --}}
-          
-        <div class="mt-5 mx-4 text-white">
-          <table class="table mt-4 display text-white" id="productsTable">
-            <thead>
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Order Id</th>
-                <th scope="col">User Name</th>
-                <th scope="col">Total Amount</th>
-                {{!-- <th scope="col">Description</th> --}}
-                <th scope="col">Status</th>
-                <th scope="col">Options</th>
-                {{!-- <th scope="col">Options</th>  --}}
-              </tr>
-            </thead>
-            <tbody>
-              {{#each orders}}
-                  <tr>
-                    {{!-- <th scope="row">1</th> --}}
-                    <td>{{inc @index}}</td>
-                    <td>{{this._id}}</td>
-                    <td>{{this.userDetails.[0].name}}</td>
-                    <td>Rs. {{this.totalAmount}}</td>
-                    
-                   <td><a href="" class="btn btn-primary">{{this.status}}</a></td>
-                   <td><a href="" class="btn btn-danger">Cancel</a></td>
-                  </tr>
-              {{/each}}
+    <div class="main-panel" style="background-color: rgb(227, 225, 221);">
 
-            </tbody>
-          </table>
+      <div class="content">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-dark" style="background-color: rgb(153, 153, 153);">
+                  {{!-- style="background-color:rgb(165, 161, 161)" --}}
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h4 class="card-title"><strong>Order Details</strong></h4>
+                    </div>
+                    {{!--<form action="/admin/sales-report" method="post">
+                      <div class="col d-flex">
+                        <div class="d-flex align-items-center ml-5">
+                          <label class="mr-2 " style="padding-top:10px;" for="from">From:</label>
+                          <input id="from" name="from_date" class="form-control mr-2" type="date">
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <label class=" ml-2 mr-2" style="padding-top:10px;" for="to">To:</label>
+                          <input id="to" name="to_date" class="form-control mr-2" type="date">
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                      </div>
+                    </form>--}}
+                  </div>
+                </div>
+
+
+
+
+
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="ordertable" class="table">
+                      <thead class=" text-dark">
+                        <tr>
+                          {{!-- <th scope="col">No.</th> --}}
+                          <th scope="col"><strong>Date</strong></th>
+                          <th scope="col"><strong>Order Id</strong></th>
+                          <th scope="col"><strong>User Name</strong></th>
+                          <th scope="col"><strong>Total Amount</strong></th>
+                          <th scope="col"><strong>Payment Method</strong></th>
+                          <th scope="col"><strong>Status</strong></th>
+                          {{!-- <th scope="col"><strong>Description</th></strong> --}}
+                          <th scope="col"><strong>View Details</strong></th>
+                          <th scope="col"><strong>Options</strong></th>
+                          <th scope="col"><strong>Cancel</strong></th>
+                          {{!-- <th scope="col">Options</th> --}}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each orders}}
+                        <tr>
+                          {{!-- <th scope="row">1</th> --}}
+                          {{!-- <td>{{inc @index}}</td> --}}
+                          <td><strong>{{this.date}}</strong></td>
+                          <td><strong>{{this._id}}</strong></td>
+                          <td><strong>{{this.userDetails.[0].name}}</strong></td>
+                          <td><strong>₹ {{this.totalAmount}}</strong></td>
+                          <td><strong>{{this.paymentMethod}}</strong></td>
+                          <td><strong>{{this.status}}</strong></td>
+
+                          <td><strong><a href="/admin/view-order-details/{{this._id}} " class="btn btn-sm "
+                              style="background-color: rgba(38,50,56,1.0);">Details</a></td>
+                          {{#if this.isPlaced}}
+                          <td><button
+                              class="btn btn-sm text-white" data-toggle="modal" data-target="#shipOrder{{this._id}}" style="background-color: #c51162;">Ship order</button></td>
+                          {{else if this.isShipped}}
+                          <td><button
+                              class="btn btn-sm text-white" data-toggle="modal" data-target="#deliverOrder{{this._id}}" style="background-color: #8a4186	;">Deliver</button></td>
+                          {{else if isDelivered}}
+                          <td><a class="btn btn-sm btn-success text-white disabled">Delivered</a></td>
+                          {{else if this.isRequested}}
+                          <td><button class="btn btn-sm text-white" data-toggle="modal" data-target="#returnAcceptOrder{{this._id}}" style="background-color: #076ee4;">Accept Return</button></td>
+                  
+                          {{else if isReturned}}
+                          <td><a class="btn btn-sm text-white btn-warning disabled">Returned</a></td>
+                          {{else}}
+                          <td><a class="btn btn-sm btn-primary text-white disabled">Delivered</a></td>
+                          {{/if}}
+                          {{#if this.isCancelled}}
+                          <td><a class="btn btn-sm btn-danger text-white disabled">Cancel</a></td>
+                          {{else}}
+                          <td><button
+                              class="btn btn-sm text-white btn-danger" data-toggle="modal" data-target="#cancelOrder{{this._id}}">Cancel</button></td>
+                          {{/if}}
+                        </tr>
+                        {{/each}}
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-          
-      </section>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{{#each orders}}
+
+<div class="modal fade" id="shipOrder{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="shipOrderLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shipOrderLabel"><strong>Ship Order</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Ship this order ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/shipOrder/{{this._id}}"  class="btn" style="background-color: black;">Ship</a>
+      </div>
     </div>
   </div>
-</div>  
+</div>
+
+{{/each}}
+
+
+{{#each orders}}
+
+<div class="modal fade" id="deliverOrder{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="deliverOrderLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deliverOrderLabel"><strong>Deliver Order</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Deliver this order ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/deliverOrder/{{this._id}}"  class="btn" style="background-color: black;">Deliver</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/each}}
+
+
+{{#each orders}}
+
+<div class="modal fade" id="returnAcceptOrder{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="returnAcceptOrderLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="returnAcceptOrderLabel"><strong>Return Request</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to accpet the Return request of {{this._id}} order ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/returnAcceptOrder/{{this._id}}"  class="btn" style="background-color: black;">Return</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/each}}
+
+
+{{#each orders}}
+
+<div class="modal fade" id="cancelOrder{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="cancelOrderLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelOrderLabel"><strong>Cancel Order</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Cancel this order ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/cancelOrder/{{this._id}}" class="btn" style="background-color: black;">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/each}}
+
+<script>
+  $(document).ready(function () {
+    $('#ordertable').DataTable();
+
+
+  });
+</script>

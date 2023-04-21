@@ -1,239 +1,361 @@
-    <div class="bg-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <a href="/usercart">Cart</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Checkout</strong></div>
-        </div>
+<div class="bg-light py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <a href="/usercart">Cart</a>
+        <span class="mx-2 mb-0">/</span> <strong class="text-black">Checkout</strong>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="site-section">
-      <div class="container">
-        <form action="" id="placeorder-form">
-        <div class="row">
-          <div class="col-md-6 mb-5 mb-md-0">
-            <h2 class="h3 mb-3 text-black">Billing Details</h2>
-            <div class="p-3 p-lg-5 border">
+<div class="site-section">
+  <div class="container">
+    <div class="col-md-6 mb-5 mb-md-0">
+      {{!-- <h2 class="h3 mb-3 text-black">Your Address</h2> --}}
+      <div class="p-4  mb-3">
+        {{!-- <a href=""><span class="icon icon-home" data-toggle="modal" data-target="#exampleModalCenter"> Add new
+            address</span></a> --}}
+        <button type="button" class="btn btn-dark btn-block" data-toggle="modal" data-target="#exampleModalCenter">
+          <span class="icon icon-home"> Add New Address</span>
+        </button>
+      </div>
+
+    </div>
+
+    <form method="post" id="placeorder-form">
+      <div class="row">
+        <div class="col-md-6 mb-5 mb-md-0">
+          <h2 class="h3 mb-3 text-black">Your Address</h2>
+          {{#each userAddress}}
+          <div class="border p-3 mb-3" style="color:black">
+            <label class="radio-inline">
+              <input class="mr-2" type="radio" name="addressId" value="{{this._id}}" checked><strong
+                class="ml-1">{{this.name}}</strong><br>
+              <strong class="ml-4">{{this.address}}</strong><br>
+              <strong class="ml-4">{{this.country}}, {{this.state}}, {{this.pincode}}</strong><br>
+              <strong class="ml-4">{{this.tel}}</strong><br>
+
+            </label>
+
+          </div>
+          {{/each}}
+    {{!-- </form> --}}
+  </div>
+
+
+  <div class="col-md-6">
+
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <h2 class="h3 mb-3 text-black">Your Order</h2>
+        <div class="p-3 p-lg-5 border">
+          <table class="table site-block-order-table mb-5">
+            <thead>
+              <th>Product</th>
+              <th>Total</th>
+            </thead>
+            <tbody>
+              {{#each product}}
+              <tr>
+                <td>{{this.product.name}} <strong class="mx-2">x</strong> {{this.quantity}}</td>
+                <td>₹ {{math this.product.price '*' this.quantity}}</td>
+              </tr>
+              {{/each}}
+
+              <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+              <td class="text-black" id="orderTotal">₹ {{ordertotal}}</td>
+              </tr>
+              <tr>
+              <td class="text-black font-weight-bold"><strong>Discount</strong></td>
+              <td class="text-black" >₹<span id="discountCell"> {{discountDetails}}</span></td>
+              </tr>
+              <tr>
+                <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                <td class="text-black font-weight-bold"><strong>₹<span id="carttotal"> {{total}}</span></strong></td>
+              </tr>
               
-              {{!-- <div class="form-group row">
-                <div class="col-md-6">
-                  <label for="fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="fname" name="firstname">
-                </div>
-                <div class="col-md-6">
-                  <label for="lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="lname" name="lastname">
-                </div>
-              </div> --}}
+            </tbody>
+          </table>
 
-            
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <label for="name" class="text-black">Full name <span class="text-danger">*</span></label>
-                  <input type="text" id="name" name="name" class="form-control"
-                  onkeyup="validateName()" placeholder="Name"/>
-                  <span id="name-error" class="validation-label" style="color: red;"></span>                
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
-                   <input type="text" id="address" name="address" class="form-control"
-                  onkeyup="validateAddress()" placeholder="address"/>
-                  <span id="address-error" class="validation-label" style="color: red;"></span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <label for="country" class="text-black">Country <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="country" name="country" onkeyup="validateCountry()">
-                  <span id="country-error" class="validation-label" style="color: red;"></span>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6">
-                  <label for="state" class="text-black">State <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="state" name="state" onkeyup="validateState()">
-                  <span id="state-error" class="validation-label" style="color: red;"></span>
-                </div>
-                <div class="col-md-6">
-                  <label for="postal_zip" class="text-black">Postal / Zip <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="pincode" name="pincode" onkeyup="validatePincode()">
-                  <span id="pincode-error" class="validation-label" style="color: red;"></span>
-                </div>
-              </div>
-
-              <div class="form-group row mb-5">
-                <div class="col-md-6">
-                  <label for="email" class="text-black">Email Id <span class="text-danger">*</span></label>
-                  <input type="email" id="email" name="email" class="form-control"
-                  onkeyup="validateEmail()" placeholder="Email" />
-                  <span id="email-error" class="validation-label" style="color: red;"></span>
-                </div>
-                <div class="col-md-6">
-                  <label for="phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                  <input type="tel" id="tel" name="tel" class="form-control" onkeyup="validateTel()" placeholder="Mobile Number" />
-                  <span id="tel-error" class="validation-label" style="color: red;" ></span> 
-                </div>
-                <input type="text"  id="" name="userId" value="{{user._id}}"hidden>
-              </div>
-
-
-            </div>
-          </div>
-          <div class="col-md-6">
-            
-            <div class="row mb-5">
-              <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black">Your Order</h2>
-                <div class="p-3 p-lg-5 border">
-                  <table class="table site-block-order-table mb-5">
-                    <thead>
-                      <th>Product</th>
-                      <th>Total</th>
-                    </thead>
-                    <tbody>
-                      {{#each product}}
-                      <tr>
-                        <td>{{this.product.name}} <strong class="mx-2">x</strong> {{this.quantity}}</td>
-                        <td>Rs. {{math this.product.price '*' this.quantity}}</td>
-                      </tr>
-                      {{/each}}
-                      
-                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">Rs.{{total}}</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>Rs.<span id="total">{{total}}</span></strong></td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <div class="border p-3 mb-3">
-                    <label class="radio-inline">
-                        <input class="mr-2" type="radio" name="payment-method" value="COD" checked>COD
-                    </label>
-                    
-                  </div>
-                  <div class="border p-3 mb-3">
-                    <label class="radio-inline">
-                        <input class="mr-2" type="radio" name="payment-method" value="ONLINE" checked>Online Payment
-                    </label>
-                    
-                  </div>
-
-                  <div class="form-group">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" type="submit" onclick="return validateForm()">Place Order</button>
-
-                  </div>
-
-                </div>
-              </div>
-            </div>
+          <div class="border p-3 mb-3 text-dark">
+            <label class="radio-inline">
+              <input class="mr-2" type="radio" name="payment-method" value="COD" checked><strong>COD</strong>
+            </label>
 
           </div>
-          <span id="submit-error" class="validation-label" style="color: red;"></span>
+          <div class="border p-3 mb-3 text-dark">
+            <label class="radio-inline">
+              <input class="mr-2" type="radio" name="payment-method" value="ONLINE"><strong>Online Payment</strong>
+            </label>
+
+          </div>
+          {{#if (isGreater walletAmount total)}}
+          <div class="border p-3 mb-3 text-dark">
+            <label class="radio-inline">
+              <input class="mr-2" type="radio" name="payment-method" value="WALLET"><strong>Wallet Payment</strong>
+            </label>
+          </div>
+          {{/if}}
+          <div class="form-group">
+            <button class="btn btn-dark btn-lg py-3 btn-block" type="submit" id="placeorder">Place Order</button>
+          </div>
+
         </div>
-        </form>
-        <!-- </form> -->
       </div>
     </div>
 
-    <footer class="site-footer border-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Navigations</h3>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Sell online</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Shopping cart</a></li>
-                  <li><a href="#">Store builder</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Mobile commerce</a></li>
-                  <li><a href="#">Dropshipping</a></li>
-                  <li><a href="#">Website development</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="#">Point of sale</a></li>
-                  <li><a href="#">Hardware</a></li>
-                  <li><a href="#">Software</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4">Promo</h3>
-            <a href="#" class="block-6">
-              <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-              <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-              <p>Promo from  nuary 15 &mdash; 25, 2019</p>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="block-5 mb-5">
-              <h3 class="footer-heading mb-4">Contact Info</h3>
-              <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
-              </ul>
-            </div>
+  </div>
+  {{!-- <span id="submit-error" class="validation-label" style="color: red;"></span> --}}
+</div>
+</form>
+</div>
+</div>
 
-            <div class="block-7">
-              <form action="#" method="post">
-                <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                <div class="form-group">
-                  <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                  <input type="submit" class="btn btn-sm btn-primary" value="Send">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
+<footer class="site-footer border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="row">
           <div class="col-md-12">
-            <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
+            <h3 class="footer-heading mb-4">Navigations</h3>
           </div>
-          
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Sell online</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Shopping cart</a></li>
+              <li><a href="#">Store builder</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Mobile commerce</a></li>
+              <li><a href="#">Dropshipping</a></li>
+              <li><a href="#">Website development</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Point of sale</a></li>
+              <li><a href="#">Hardware</a></li>
+              <li><a href="#">Software</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-    </footer>
+      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <h3 class="footer-heading mb-4">Promo</h3>
+        <a href="#" class="block-6">
+          <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+          <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
+          <p>Promo from nuary 15 &mdash; 25, 2019</p>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="block-5 mb-5">
+          <h3 class="footer-heading mb-4">Contact Info</h3>
+          <ul class="list-unstyled">
+            <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
+            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+            <li class="email">emailaddress@domain.com</li>
+          </ul>
+        </div>
+
+        <div class="block-7">
+          <form action="#" method="post">
+            <label for="email_subscribe" class="footer-heading">Subscribe</label>
+            <div class="form-group">
+              <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+              <input type="submit" class="btn btn-sm btn-primary" value="Send">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-5 mt-5 text-center">
+      <div class="col-md-12">
+        <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;
+          <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+          <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+            class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
+            class="text-primary">Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+      </div>
+
+    </div>
+  </div>
+</footer>
 
 
-    <script>
-        $('#placeorder-form').submit((e)=>{
-            e.preventDefault()
-            $.ajax({
-                url:'/checkout',
-                method: 'post',
-                data : $ ('#placeorder-form').serialize(),
-                success : (response)=>{
-                    if(response.status){
-                        location.href='/thank-you'
-                    }
-                }
-            })
-        })
-    </script>
-    
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Address</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/user-add-address" method="post">
+
+          <div class="form-group row">
+            <div class="col-xl-12">
+              <label for="name" class="text-black">Full Name <span class="text-danger">*</span></label>
+              <input type="text" id="name" name="name" class="form-control" onkeyup="validateName()"
+                placeholder="Name" />
+              <span id="name-error" class="validation-label" style="color: red;"></span>
+            </div>
+
+          </div>
+          <div class="form-group row">
+            <div class="col-xl-12">
+              <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
+              <input type="address" id="address" name="address" class="form-control" onkeyup="validateaddress()" />
+              <span id="address-error" class="validation-label" style="color: red;"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-xl-12">
+              <label for="state" class="text-black">State<span class="text-danger">*</span></label>
+              <input type="state" id="state" name="state" class="form-control" onkeyup="validatestate()" />
+              <span id="state-error" class="validation-label" style="color: red;"></span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-xl-12">
+              <label for="country" class="text-black">Country<span class="text-danger">*</span></label>
+              <input type="country" id="country" name="country" class="form-control" onkeyup="validatecountry()" />
+              <span id="country-error" class="validation-label" style="color: red;"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-xl-12">
+              <label for="postal_zip" class="text-black">Postal / Zip <span class="text-danger">*</span></label>
+              <input type="pincode" id="pincode" name="pincode" class="form-control" onkeyup="validatepincode()" />
+              <span id="pincode-error" class="validation-label" style="color: red;"></span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-xl-12">
+              <label for="tel" class="text-black">Mobile Number<span class="text-danger">*</span> </label>
+              <input type="tel" id="tel" name="tel" class="form-control" onkeyup="validateTel()" />
+              <span id="tel-error" class="validation-label" style="color: red;"></span>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-lg-12">
+              <button type="submit" class="buy-now btn btn-sm btn-dark" onclick="return validateForm()">Submit</button>
+            </div>
+          </div>
+      </div>
+      </form>
+    </div>
+    {{!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div> --}}
+  </div>
+</div>
+</div>
+
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  $('#placeorder-form').submit((e) => {
+    e.preventDefault()
+
+    $.ajax({
+      url: '/checkout',
+      method: 'POST',
+      data: $('#placeorder-form').serialize(),
+      success: (response) => {
+        console.log(response)
+        if (response.codSuccess) {
+          location.href = '/thank-you'
+        }
+        else if (response.walletSuccess) {
+          location.href = '/thank-you'
+        }
+        else {
+          razorpayPayment(response)
+
+        }
+      }
+    })
+  })
+
+  function razorpayPayment(order) {
+    var options = {
+      "key": "rzp_test_qoL5ARjplvfe2r", // Enter the Key ID generated from the Dashboard
+      "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "Calintede", //your business name
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+
+      "handler": function (response) {
+       
+        verifyPayment(response, order)
+
+      },
+
+      "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+      "prefill": {
+        "name": "Gaurav Kumar", //your customer's name
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+      },
+      "notes": {
+        "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+        "color": "#3399cc"
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  }
+
+  function verifyPayment(payment, order) {
+    $.ajax({
+      url: '/verify-payment',
+      data: {
+        payment,
+        order
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.status) {
+          location.href = '/thank-you'
+        } else {
+          alert("Payment Failed")
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      }
+    });
+  }
+</script>
+
+
+
+
+
 <script type="text/javascript" src="/javascripts/signup-validation.js"></script>

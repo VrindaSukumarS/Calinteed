@@ -51,6 +51,14 @@ app.engine('hbs',hbs.engine({helpers:{
       "/": lvalue / rvalue,
       "%": lvalue % rvalue,
     }[operator];
+  },
+
+  isEqual : function(value1,value2){
+    return value1==value2;
+  },
+
+  isGreater : function(value1,value2){
+    return (value1>value2)
   }
 },
 extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partials/'}));
@@ -59,7 +67,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(nocache());
 app.use(cookieParser());
-app.use(session({resave:false,saveUninitialized: true,secret:"key",cookie:{maxAge:600000}}));
+app.use(session({resave:false,saveUninitialized: true,secret:"key",cookie:{maxAge:60000000}}));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(fileUpload());
 app.use('/admin', adminRouter);

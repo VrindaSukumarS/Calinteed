@@ -1,4 +1,4 @@
-<div class="dark-edition">
+<div class="">
     <div class="wrapper ">
     <div class="sidebar" data-color="white" data-background-color="black" >
       <!--data-image="../assets/img/sidebar-2.jpg"
@@ -44,79 +44,80 @@
             </a>
           </li>
           <li class="nav-item ">
+            <a class="nav-link" href="/admin/coupon-management">
+              <i class="material-icons">category</i>
+              <p>Coupon Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
             <a class="nav-link" href="../admin/banner-management">
               <i class="material-icons">library_books</i>
               <p>Banner Management</p>
             </a>
           </li>
-            <!-- <li class="nav-item ">
-                <a class="nav-link" href="./map.html">
-                <i class="material-icons">location_ons</i>
-                <p>Maps</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./notifications.html">
-                <i class="material-icons">notifications</i>
-                <p>Notifications</p>
-                </a>
-            </li> -->
-            <!-- <li class="nav-item active-pro ">
-                    <a class="nav-link" href="./upgrade.html">
-                        <i class="material-icons">unarchive</i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li> -->
+           
         </ul>
       </div>
     </div>
     <div class="main-panel">
 
-      <section class="dark-edition">
+      <section class="">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 mt-3 text-white">
-              <h2 class="mt-5" style="font-size: 2rem;">ADD PRODUCTS</h2>
+              <h2 class="mt-5 text-dark" style="font-size: 1.5rem;"><strong>Add Products</strong> </h2>
               <form action="/admin/add-product" style="margin-top: 2em;" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                  <label for="name" class="form-label">Product Name</label>
-                  <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
+                <div class="mb-1">
+                  <label for="name" class="form-label text-dark"><strong> Product Name</strong> </label>
+                  <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+                  <span id="productName-error" class="validation-label" style="color: red;"></span>
                 </div>
-                <div class="mb-3">
-                  <label for="code" class="form-label">Product Code</label>
+                <div class="mb-1">
+                  <label for="code" class="form-label text-dark"><strong> Product Code</strong> </label>
                   <input type="" class="form-control" name="code" id="code">
+                  <span id="code-error" class="validation-label" style="color: red;"></span>
                 </div>
-                <div class="mb-3">
-                  <label for="category" class="form-label">Product Category</label>
+
+                <div class="mb-1">
+                  <label for="stock" class="form-label text-dark"><strong> Available Product Stock</strong> </label>
+                  <input type="number" class="form-control" name="stock" id="stock">
+                  <span id="stock-error" class="validation-label" style="color: red;"></span>
+                </div>
+
+                <div class="mb-1">
+                  <label for="category" class="form-label text-dark"><strong> Product Category</strong> </label>
                   <select class="form-select" name="category" id="category">
-                    <option value="">Select a category</option>
+                    <option value="" class="" >Select a category</option>
                     {{#each categories}}
                       <option value="{{this._id}}">{{this.name}}</option>
                     {{/each}}
+                    <span id="category-error" class="validation-label" style="color: red;"></span>
                   </select>
                 </div>
 
-
-                <div class="mb-3">
-                  <label for="description" class="form-label">Description</label>
+                <div class="mb-1">
+                  <label for="description" class="form-label text-dark"><strong> Description</strong> </label>
                   <input type="text" class="form-control" name="description" id="description">
+                  <span id="description-error" class="validation-label" style="color: red;"></span>
                 </div>
-                <div class="mb-3">
-                  <label for="price" class="form-label">Price</label>
+                <div class="mb-1">
+                  <label for="price" class="form-label text-dark"><strong> Price</strong> </label>
                   <input type="number" class="form-control" name="price" id="price">
+                  <span id="price-error" class="validation-label" style="color: red;"></span>
                 </div>
 
-                <div class="mb-3">
-                    <label for="image" class="form-label" >Image</label>
+                <div class="mb-1">
+                    <label for="image" class="form-label text-dark" ><strong>Image</strong> </label>
                     <input type="file" class="form-control" name="image" id="image" multiple>
+                    <span id="image-error" class="validation-label" style="color: red;"></span>
                 </div>
 
 
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-dark">Submit</button>
+                    <button type="submit" class="btn btn-success" onclick="return validateProductForm()">Submit</button>
                 {{!-- </div>
                 <div class="text-center mt-4"> --}}
-                    <button type="button" class="btn btn-dark"><a href="/admin/product-management">Cancel</a></button>
+                    <button type="button" class="btn" style="background-color: rgba(84,110,122,1.0);"><a href="/admin/product-management" class="text-white">Cancel</a></button>
                 </div>
               </form>
             </div>

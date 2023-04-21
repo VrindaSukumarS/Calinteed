@@ -1,180 +1,262 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 <style>
- .favorite-icon {
-  position: absolute;
-  top: 10px;
-  right: 22px;
-  font-size: 20px;
-  color: red;
- }
+  .favorite-icon {
+    position: absolute;
+    right: 22px;
+    font-size: 20px;
+    color: red;
+  }
 
+  body {
+    color: #000;
+    overflow-x: hidden;
+  }
+
+  .card {
+    margin: auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 </style>
-  <div class="site-wrap">
+<div class="site-wrap">
 
-    <div class="bg-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Wishlist</strong></div>
-        </div>
+  <div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <a href="/shop-view">Shop</a>
+          <span class="mx-2 mb-0">/</span> <strong class="text-black">Wishlist</strong></div>
       </div>
     </div>
+  </div>
 
-    <div class="site-section">
-      <div class="container">
+  <div class="site-section">
+    <div class="container">
 
-        <div class="row mb-5">
-          <div class="col-md-9 order-2">
+      <div class="row mb-5">
+        {{#if wishlistLength}}
 
-            <div class="row">
-              <div class="col-md-12 mb-5">
-                <div class="float-md-left mb-4"><h2 class="text-black h5">Shop All</h2></div>
-                <div class="d-flex">
-                  <div class="dropdown mr-1 ml-md-auto">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Latest
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                      <a class="dropdown-item" href="#">Oversized T-shirts</a>
-                      <a class="dropdown-item" href="#">Hoodies</a>
-                      <a class="dropdown-item" href="#">Caps</a>
-                    </div>
-                  </div>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                      <a class="dropdown-item" href="#">Relevance</a>
-                      <a class="dropdown-item" href="#">Name, A to Z</a>
-                      <a class="dropdown-item" href="#">Name, Z to A</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Price, low to high</a>
-                      <a class="dropdown-item" href="#">Price, high to low</a>
-                    </div>
-                  </div>
-                </div>
+        <div class="col-md-9 order-2">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="float-md-left ml-5">
+                <h2 class="text-black h5">My Wishlist</h2>
               </div>
-            </div>
-            <div class="row mb-5"  >
-              {{#each products}}
-                <div class="col-sm-6 col-lg-4 mb-4"  data-aos="fade-up">
-                  
-                  <div class="block-4 text-center border "  >
-                    
-                    <figure class="block-4-image " >
-                      <a href="/product-view/{{this.product._id}}" ><img src="{{this.product.imagefield.[0]}}"  class="img-fluid"style="width:100%" ><span> <button onfocus="none" onclick="removeWishlistProduct('{{this._id}}','{{this.product._id}}',-1)" class="material-icons favorite-icon icon icon-heart" style="border: none; border-radius:50%; "></button></span></a>
-                      {{!-- style="height: 20rem;" --}}
-                    </figure>
-                    <div class="d-flex">
-                      <div class="float-right">
-                      </div>
-                    </div>
-                    <div class="block-4-text">
-                      <h3><a href="">{{this.product.name}}</a></h3>
-                      {{!-- <p class="mb-0">{{this.description}}</p> --}}
-                      <p class="text-primary font-weight-bold">Rs.{{this.product.price}}</p>
-                    </div>
-                    
+              {{!-- <div class="d-flex">
+                <div class="dropdown mr-1 ml-md-auto">
+                  <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Latest
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <a class="dropdown-item" href="#">Oversized T-shirts</a>
+                    <a class="dropdown-item" href="#">Hoodies</a>
+                    <a class="dropdown-item" href="#">Caps</a>
                   </div>
                 </div>
-              {{/each}}
-        
-
-            </div>
-            <div class="row" data-aos="fade-up">
-              <div class="col-md-12 text-center">
-                <div class="site-block-27">
-                  <ul>
-                    <li><a href="#">&lt;</a></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&gt;</a></li>
-                  </ul>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference"
+                    data-toggle="dropdown">Reference</button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                    <a class="dropdown-item" href="#">Relevance</a>
+                    <a class="dropdown-item" href="#">Name, A to Z</a>
+                    <a class="dropdown-item" href="#">Name, Z to A</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Price, low to high</a>
+                    <a class="dropdown-item" href="#">Price, high to low</a>
+                  </div>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
+          <div class="row mb-5 ml-5">
+            {{#each products}}
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
 
-          <div class="col-md-3 order-1 mb-5 mb-md-0">
-            <div class="border p-4 rounded mb-4">
-              <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
-              {{!-- <ul class="list-unstyled mb-0">
-                {{#each categories}}
-                <li class="mb-1"><a href="/filter-category/{{this._id}}" class="d-flex"><span>{{this.name}}</span> <span class="text-black ml-auto">(2,220)</span></a></li>
-                
-              {{/each}}
-              </ul>  --}}
+              <div class="block-4 text-center border card">
+
+                <figure class="block-4-image ">
+                  <a href="/product-view/{{this._id}}"><img src="{{this.imagefield.[0]}}" class="img-fluid"
+                      style="width:100%;"></a><span> <button onfocus="none"
+                      onclick="removeWishlistProduct('{{../user._id}}','{{this._id}}',-1)" id="removeWishlist"
+                      class="material-icons favorite-icon icon icon-heart" style="border: none; "></button></span>
+                  {{!-- style="height: 20rem;" --}}
+                  
+
+                </figure>
+                <div class="d-flex">
+                  <div class="float-right">
+                  </div>
+                </div>
+                <div class="block-4-text ">
+                  <h3 style="font-size: 1rem;"><a href="" class="text-dark font-weight-bold ml-2">{{this.name}}</a></h3>
+                  {{!-- <p class="mb-0">{{this.description}}</p> --}}
+                  <p class="text-dark font-weight-bold ml-2 " style="font-size: 1rem;">{{this.price}}</p>
+                </div>
+                <button onclick="cart('{{this._id}}')" id="info" class="buy-now btn btn-xs btn-dark mb-3"
+                  style="font-size: smaller;">Add To Cart</button>
+
+
+              </div>
+            </div>
+            {{/each}}
+
+
+          </div>
+          {{else}}
+          <div class="container-fluid mt-100">
+            <div class="row">
+
+              <div class="col-md-12">
+
+                <div class="card">
+
+                  <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center">
+                      <img src="https://cdn.iconscout.com/icon/premium/png-128-thumb/wishlist-110-1135589.png"
+                        width="130" height="130" class="img-fluid mb-4 mr-3">
+                      <h3 class="text-dark"><strong>Your Wishlist is Empty</strong></h3>
+                      <h4>Add something to make me happy :)</h4>
+                      <a href="/shop-view" class="btn btn-dark cart-btn-transform m-3" data-abc="true">continue
+                        shopping</a>
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
 
             </div>
 
-            <div class="border p-4 rounded mb-4">
-              <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-                <div id="slider-range" class="border-primary"></div>
-                <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+          </div>
+          {{/if}}
+          {{!-- <div class="row" data-aos="fade-up">
+            <div class="col-md-12 text-center">
+              <div class="site-block-27">
+                <ul>
+                  <li><a href="#">&lt;</a></li>
+                  <li class="active"><span>1</span></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">&gt;</a></li>
+                </ul>
               </div>
+            </div>
+          </div> --}}
+        </div>
 
-             
-              <form action="/filter-category" method="post">
+        {{!-- <div class="col-md-3 order-1 mb-5 mb-md-0">
+          <div class="border p-4 rounded mb-4">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+            {{!-- <ul class="list-unstyled mb-0">
+              {{#each categories}}
+              <li class="mb-1"><a href="/filter-category/{{this._id}}" class="d-flex"><span>{{this.name}}</span> <span
+                    class="text-black ml-auto">(2,220)</span></a></li>
+
+              {{/each}}
+            </ul> --}}
+
+          </div>
+
+          <div class="border p-4 rounded mb-4">
+            {{!-- <div class="mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+              <div id="slider-range" class="border-primary"></div>
+              <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+            </div> --}}
+
+
+            {{!-- <form action="/filter-category" method="post">
               <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Price</h3>
                 <label for="s_sm" class="d-flex">
-                  <input type="radio" id="s_sm" name="price" value="500" class="mr-2 mt-1"> <span class="text-black">Below Rs.500</span>
+                  <input type="radio" id="s_sm" name="price" value="500" class="mr-2 mt-1"> <span
+                    class="text-black">Below Rs.500</span>
                 </label>
                 <label for="s_md" class="d-flex">
-                  <input type="radio" id="s_md" name="price" value="2000" class="mr-2 mt-1"> <span class="text-black">Below Rs.2000</span>
+                  <input type="radio" id="s_md" name="price" value="2000" class="mr-2 mt-1"> <span
+                    class="text-black">Below Rs.2000</span>
                 </label>
                 <label for="s_lg" class="d-flex">
-                  <input type="radio" id="s_lg" name="price" value="5000" class="mr-2 mt-1"> <span class="text-black">Below Rs.5000 </span>
+                  <input type="radio" id="s_lg" name="price" value="5000" class="mr-2 mt-1"> <span
+                    class="text-black">Below Rs.5000 </span>
                 </label>
                 <label for="s_lg" class="d-flex">
                   <button class="buy-now btn btn-sm btn-dark" type="submit">Filter</button>
                 </label>
               </div>
-              </form>
+            </form> --}}
 
-              <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
-                <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
-                </a>
-                <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green (2,298)</span>
-                </a>
-                <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Blue (1,075)</span>
-                </a>
-                <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
-                </a>
-              </div>
+            {{!-- <div class="mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+              <a href="#" class="d-flex color-item align-items-center">
+                <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red
+                  (2,429)</span>
+              </a>
+              <a href="#" class="d-flex color-item align-items-center">
+                <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green
+                  (2,298)</span>
+              </a>
+              <a href="#" class="d-flex color-item align-items-center">
+                <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Blue
+                  (1,075)</span>
+              </a>
+              <a href="#" class="d-flex color-item align-items-center">
+                <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span
+                  class="text-black">Purple (1,075)</span>
+              </a>
+            </div> --}}
 
-            </div>
           </div>
         </div>
-
-       
-        </div>
-        
       </div>
+
+
     </div>
 
+  </div>
+</div>
+
+
+
+
+
 <script>
-  function removeWishlistProduct(wishlistId,proId){
-   
+  function removeWishlistProduct(userId, proId) {
+
     $.ajax({
-      url : '/remove-wishlist-product',
-      data : {
-        wishlist : wishlistId,
-        product : proId,
+      url: '/remove-wishlist-product',
+      data: {
+        user: userId,
+        product: proId,
       },
-      method :'post',
-      success : (response)=>{
-        if(response.removeProduct){
-          alert("Product removed from wishlist")
-          location.reload()
+      method: 'post',
+      success: (response) => {
+        if (response.removeProduct) {
+          setTimeout(function(){
+            location.reload()
+          },2000)
+          Toastify({
+          
+            text: "Product removed from Wishlist",
+            className: "removeWishlist",
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+          }).showToast();
         }
       }
     })
   }
 </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

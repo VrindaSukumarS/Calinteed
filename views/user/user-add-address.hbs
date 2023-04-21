@@ -1,7 +1,7 @@
 <div class="bg-light py-3">
     <div class="container">
     <div class="row">
-        <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{user.name}}</strong></div>
+        <div class="col-md-12 mb-0"><a href="/">Home</a><span class="mx-2 mb-0">/</span> <a href="/user-address/{{user._id}}">My Addresses</a><span class="mx-2 mb-0">/</span> <strong class="text-black">Add New Address</strong></div>
     </div>
     </div>
 </div>  
@@ -13,12 +13,10 @@
         </div>
         <div class="col-md-5 ml-auto">
             <div class="p-4 border mb-3">
-                <a href="/userprofile/{{user._id}}"><span class="d-block text-black h6 text-uppercase" >My Account</span></a>
-                <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+                <a href="/userprofile/{{this._id}}"><span class="d-block text-black h6 text-uppercase" >My Account</span></a>
             </div>
             <div class="p-4 border mb-3">
-                <span class="d-block text-primary h6 text-uppercase">My Addresses</span>
-                <!-- <p class="mb-0">203 Fake St. Mountain View, San Francisco, California, USA</p> -->
+                    <a href="/user-address/{{user._id}}"><span class="d-block text-primary h6 text-uppercase">My Addresses</span></a>
             </div>
             <div class="p-4 border mb-3">
                 <a href="/wishlist"> <span class="d-block text-black h6 text-uppercase">My Wishlist</span></a>
@@ -27,7 +25,10 @@
                 <a href="/user-orders"><span class="d-block text-black h6 text-uppercase">My Orders</span></a>
             </div>
             <div class="p-4 border mb-3">
-                <span class="d-block text-black h6 text-uppercase">Change Password</span>
+                    <a href="/my-wallet"><span class="d-block text-black h6 text-uppercase">My Wallet</span></a>
+                </div>
+            <div class="p-4 border mb-3">
+                    <a href="/change-password"><span class="d-block text-black h6 text-uppercase">Change Password</span></a>
             </div>
         </div>
         <div class="col-md-7">
@@ -48,10 +49,7 @@
                 onkeyup="validateName()" placeholder="Name"/>
                 <span id="name-error" class="validation-label" style="color: red;"></span>                  
                 </div>
-                {{!-- <div class="col-md-6">
-                <label for="lastname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="lastname" name="lastname">
-                </div> --}}
+                
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
@@ -61,12 +59,14 @@
                 <span id="address-error" class="validation-label" style="color: red;"></span>
                 </div>
             </div>
-            {{!-- <div class="form-group row">
+            
+            <div class="form-group row">
                 <div class="col-md-12">
-                <label for="email" class="text-black">Street <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" id="email" name="email" value="{{user.email}}">
-                </div>
-            </div> --}}
+                <label for="state" class="text-black">State<span class="text-danger">*</span></label>
+                    <input type="state" id="state" name="state" class="form-control"
+                    onkeyup="validatestate()"/>
+                    <span id="state-error" class="validation-label" style="color: red;"></span>                </div>
+            </div>
             <div class="form-group row">
                 <div class="col-md-12">
                 <label for="country" class="text-black">Country<span class="text-danger">*</span></label>

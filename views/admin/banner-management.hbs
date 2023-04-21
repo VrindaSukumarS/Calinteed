@@ -1,7 +1,7 @@
-<div class="dark-edition">
+<div class="">
   <div class="wrapper ">
-        <div class="sidebar" data-color="white" data-background-color="black" >
-        <!--data-image="../assets/img/sidebar-2.jpg"
+    <div class="sidebar" data-color="white" data-background-color="black">
+      <!--data-image="../assets/img/sidebar-2.jpg"
             Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
             Tip 2: you can also add an image using data-image tag
@@ -18,7 +18,7 @@
             </a>
           </li>
           <li class="nav-item">
-             <a class="nav-link" href="../admin/user-management">
+            <a class="nav-link" href="../admin/user-management">
               <i class="material-icons">person</i>
               <p>Users Management</p>
             </a>
@@ -29,17 +29,23 @@
               <p>Product Management</p>
             </a>
           </li>
-          
-           <li class="nav-item ">
+
+          <li class="nav-item ">
             <a class="nav-link" href="../admin/order-management">
               <i class="material-icons">bubble_chart</i>
               <p>Order Management</p>
             </a>
           </li>
-           <li class="nav-item ">
+          <li class="nav-item ">
             <a class="nav-link" href="../admin/category-management">
               <i class="material-icons">category</i>
               <p>Category Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin/coupon-management">
+              <i class="material-icons">category</i>
+              <p>Coupon Management</p>
             </a>
           </li>
           <li class="nav-item active">
@@ -47,31 +53,135 @@
               <i class="material-icons">library_books</i>
               <p>Banner Management</p>
             </a>
-          </li>
-            <!-- <li class="nav-item ">
-                <a class="nav-link" href="./map.html">
-                <i class="material-icons">location_ons</i>
-                <p>Maps</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./notifications.html">
-                <i class="material-icons">notifications</i>
-                <p>Notifications</p>
-                </a>
-            </li> -->
-            <!-- <li class="nav-item active-pro ">
-                    <a class="nav-link" href="./upgrade.html">
-                        <i class="material-icons">unarchive</i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li> -->
-            </ul>
-        </div>
-        </div>
-        <div class="main-panel">
-        <!-- Navbar -->
-        
-        <!-- End Navbar -->
+
+        </ul>
+      </div>
     </div>
+    <div class="main-panel" style="background-color: rgb(227, 225, 221);">
+      <div class="content">
+        <div class="container-fluid">
+
+          <div class="row">
+            {{!-- <div class=" mx-4 d-flex"><a href="../admin/add-product" class="btn  btn-primary ml-4 ms-auto"
+                style="background-color: ;">Add Product</a>
+            </div> --}}
+            <div class="col-md-12">
+
+              <div class="card">
+                <div class="card-header card-header-dark" style="background-color: rgb(153, 153, 153);">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h4 class="card-title">Banner Details</h4>
+                    </div>
+                    <div class="mx-4 d-flex"><a href="../admin/add-banner" class="btn btn-sm btn-dark ml-4 ms-auto"
+                        style="font-size: small;"><strong>Add Banner</strong></a></div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table" id="bannertable">
+                      <thead class=" text-dark">
+                        <tr>
+                          <th scope="col"><strong>No.</strong></th>
+                          <th scope="col"><strong>Banner Name</strong></th>
+                          <th scope="col"><strong>Image</strong></th>
+                          <th scope="col"><strong>Options</strong></th>
+                          <th scope="col"><strong>Edit</strong></th>
+                          <th scope="col"><strong>Remove</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each banners}}
+                        <tr>
+                          {{!-- <th scope="row">1</th> --}}
+                          <td>{{inc @index}}</td>
+                          <td>{{this.name}}</td>
+
+                          {{!-- <td>{{this.image}}</td> --}}
+                          <td><img src="{{this.image}}" alt="{{this.name}}" style="max-width: 100px;"></td>
+                          <td>
+                            {{#if this.active}}
+                            <a href="" class="btn btn-sm"
+                              style="background-color: rgba(233,30,99,1.0)	;"
+                              >Activated</a>
+                            {{else}}
+                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#activate-banner{{this._id}}"
+                             >Activate</button>
+                          </td>
+                          {{/if}}
+                          <td><a href="/admin/edit-banner/{{this._id}}" class="btn btn-sm btn-primary">Edit</a> &nbsp;
+                          </td>
+                          <td><a href="/admin/edit-banner/{{this._id}}" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-banner{{this._id}}">Delete</a> &nbsp;
+                          </td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+{{#each banners}}
+<div class="modal fade" id="activate-banner{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="activate-bannerLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="activate-bannerLabel"><strong>Activate Banner</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Activate this banner "{{this.name}}" ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/activate-banner/{{this._id}}" class="btn" style="background-color: black;">Activate</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+
+{{#each banners}}
+
+<div class="modal fade" id="delete-banner{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="delete-bannerLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete-bannerLabel"><strong>Delete Banner</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Delete this banner "{{this.name}}" ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/delete-banner/{{this._id}}" class="btn" style="background-color: black;">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{/each}}
+
+<script>
+  $(document).ready(function () {
+    $('#bannertable').DataTable();
+
+
+  });
+</script>

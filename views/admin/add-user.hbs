@@ -1,4 +1,4 @@
-<div class="dark-edition">
+<div class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="white" data-background-color="black" >
         <!--data-image="../assets/img/sidebar-2.jpg"
@@ -43,6 +43,12 @@
             </a>
           </li>
           <li class="nav-item ">
+            <a class="nav-link" href="/admin/coupon-management">
+              <i class="material-icons">category</i>
+              <p>Coupon Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
             <a class="nav-link" href="../admin/banner-management">
               <i class="material-icons">library_books</i>
               <p>Banner Management</p>
@@ -75,36 +81,36 @@
         <!-- End Navbar -->
 
 
-      <section class="dark-edition">
+      <section class="">
 
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mt-3 text-white">
-                    <h2 class="mt-5" style="font-size: 2rem;">Add User</h2>
+                    <h2 class="mt-5 text-dark" style="font-size: 1.5rem;"><strong>Add User</strong></h2>
                     <form action="/admin/add-user" style="margin-top: 2em;" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                          <label for="name" class="form-label">User Name</label>
+                          <label for="name" class="form-label text-dark"><strong>User Name</strong></label>
                           <input type="text" class="form-control" onkeyup="validateName()" id="name" name="name" aria-describedby="emailHelp">
                           <span id="name-error" class="validation-label" style="color: red;"></span>
                         </div>
                         <div class="mb-3">
-                          <label for="email" class="form-label">User Email</label>
+                          <label for="email" class="form-label text-dark"><strong>User Email</strong></label>
                           <input type="email" class="form-control" onkeyup="validateEmail()" id="email" name="email">
                           <span id="email-error" class="validation-label" style="color: red;"></span>
                         </div>
                         <div class="mb-3">
-                          <label for="mobnum" class="form-label">Mobile Number</label>
+                          <label for="mobnum" class="form-label text-dark"><strong>Mobile Number</strong></label>
                           <input type="tel" class="form-control" name="tel" onkeyup="validateTel()" id="tel">
                           <span id="tel-error" class="validation-label" style="color: red;" ></span>
                         </div>
                         <div class="mb-3">
-                          <label for="password" class="form-label">User Password</label>
+                          <label for="password" class="form-label text-dark"><strong>User Password</strong></label>
                           <input type="password" class="form-control" name="password" onkeyup="validatePassword()" id="password">
                           <span id="password-error" class="validation-label" style="color: red;"></span>
                         </div>
 
                         {{!-- <div class="mb-3">
-                            <label for="image" class="form-label">Image</label>
+                            <label for="image" class="form-label text-dark">Image</label>
                             <input type="file" class="form-control" name="image">
                         </div> --}}
 
@@ -112,10 +118,10 @@
 
 
                         <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-dark" onclick="return validateForm()">Submit</button>
+                            <button type="submit" class="btn btn-success" onclick="return validateForm()">Submit</button>
                         {{!-- </div>
                         <div class="text-center mt-4"> --}}
-                            <button type="button" class="btn btn-dark"><a href="/admin/user-management">Cancel</a></button>
+                            <button type="button" class="btn" style="background-color: rgba(84,110,122,1.0)	;"><a href="/admin/user-management" class="text-white">Cancel</a></button>
                         </div>
                         <span id="submit-error" class="validation-label" style="color: red;"></span>
                     </form>
@@ -128,3 +134,5 @@
 </div>
 
 <script type="text/javascript" src="/javascripts/signup-validation.js"></script>
+
+

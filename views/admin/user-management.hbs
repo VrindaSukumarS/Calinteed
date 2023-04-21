@@ -1,7 +1,7 @@
-<div class="dark-edition">
+<div class="">
   <div class="wrapper ">
-        <div class="sidebar" data-color="white" data-background-color="black" >
-        <!--data-image="../assets/img/sidebar-2.jpg"
+    <div class="sidebar" data-color="white" data-background-color="black">
+      <!--data-image="../assets/img/sidebar-2.jpg"
             Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
             Tip 2: you can also add an image using data-image tag
@@ -18,7 +18,7 @@
             </a>
           </li>
           <li class="nav-item active">
-             <a class="nav-link" href="../admin/user-management">
+            <a class="nav-link" href="../admin/user-management">
               <i class="material-icons">person</i>
               <p>Users Management</p>
             </a>
@@ -29,17 +29,23 @@
               <p>Product Management</p>
             </a>
           </li>
-          
-           <li class="nav-item ">
+
+          <li class="nav-item ">
             <a class="nav-link" href="../admin/order-management">
               <i class="material-icons">bubble_chart</i>
               <p>Order Management</p>
             </a>
-          </li> 
+          </li>
           <li class="nav-item ">
             <a class="nav-link" href="../admin/category-management">
               <i class="material-icons">category</i>
               <p>Category Management</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin/coupon-management">
+              <i class="material-icons">category</i>
+              <p>Coupon Management</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -48,7 +54,7 @@
               <p>Banner Management</p>
             </a>
           </li>
-            <!-- <li class="nav-item ">
+          <!-- <li class="nav-item ">
                 <a class="nav-link" href="./map.html">
                 <i class="material-icons">location_ons</i>
                 <p>Maps</p>
@@ -60,68 +66,144 @@
                 <p>Notifications</p>
                 </a>
             </li> -->
-            <!-- <li class="nav-item active-pro ">
+          <!-- <li class="nav-item active-pro ">
                     <a class="nav-link" href="./upgrade.html">
                         <i class="material-icons">unarchive</i>
                         <p>Upgrade to PRO</p>
                     </a>
                 </li> -->
-            </ul>
-        </div>
-        </div>
-        <div class="main-panel">
-        <!-- Navbar -->
-       
-        <!-- End Navbar -->
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel" style="background-color: rgb(227, 225, 221);">
+      <div class="content">
+        <div class="container-fluid">
+
+          <div class="row">
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-dark" style="background-color: rgb(153, 153, 153);">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h4 class="card-title">User Details</h4>
+                    </div>
+                    <div class=" mx-4 d-flex"><a href="../admin/add-user" class="btn btn-sm btn-dark ms-auto"
+                        style="font-size: small;"><strong>Add User</strong></a></div>
+
+                  </div>
+                </div>
 
 
-<section class="dark-edition">
-    <div class="row">
-        <div class="mt-5 mx-4 d-flex"><a href="../admin/add-user" class="btn btn-success ms-auto">Add User</a></div>
+
+
+
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table" id="usertable">
+                      <thead class=" text-dark">
+                        <tr>
+                          {{!-- <th scope="col">No</th> --}}
+                          <th scope="col"><strong>No.</strong></th>
+                          <th scope="col"><strong>Name</strong></th>
+                          <th scope="col"><strong>Email</strong></th>
+                          <th scope="col"><strong>Mob.No</strong></th>
+                          <th scope="col"><strong>Edit</strong></th>
+                          {{!-- <th scope="col">Image</th>
+                          <th scope="col">Options</th> --}}
+                        </tr>
+
+                      </thead>
+                      <tbody>
+                        {{#each users}}
+                        <tr>
+                          {{!-- <th scope="row">1</th> --}}
+                          <td>{{inc @index}}</td>
+                          <td>{{this.name}}</td>
+                          <td>{{this.email}}</td>
+                          <td>{{this.tel}}</td>
+                          {{!-- <td>Rs.{{this.price}}</td> --}}
+                          {{!-- <td><img style="width: 40px;height:40px" src="/product-images/{{this._id}}.jpg"></td>
+                          <a href="/admin/delete/{{this._id}}" class="btn btn-danger"
+                            onclick="return confirm('Do you want to delete {{this.name}}')">Delete</a></td> --}}
+                          {{#if this.userStatus}}
+                          <td><button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#blockUser{{this._id}}">Block</button> &nbsp;
+                            {{else}}
+                          <td><button data-toggle="modal" data-target="#unblockUser{{this._id}}" class="btn btn-sm btn-success">Unblock</button>
+                            &nbsp;
+                            {{/if}}
+                        </tr>
+                        {{/each}}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <div class="mt-5 mx-4 text-white">
-      <table class="table mt-4 display text-white" id="productsTable">
-        <thead>
-          <tr>
-            {{!-- <th scope="col">No</th> --}}
-            <th scope="col">No.</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Mob.No</th>
-            <th scope="col">Edit</th>
-            {{!-- <th scope="col">Image</th>
-            <th scope="col">Options</th> --}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each users}}
-              <tr>
-                {{!-- <th scope="row">1</th> --}}
-                <td>{{inc @index}}</td>
-                <td>{{this.name}}</td>
-                <td>{{this.email}}</td>
-                <td>{{this.tel}}</td>
-                {{!-- <td>Rs.{{this.price}}</td> --}}
-                {{!-- <td><img style="width: 40px;height:40px" src="/product-images/{{this._id}}.jpg"></td>
-                <a href="/admin/delete/{{this._id}}" class="btn btn-danger" onclick="return confirm('Do you want to delete {{this.name}}')">Delete</a></td> --}}
-                {{#if this.userStatus}}
-                <td><a href="/admin/blockUser/{{this._id}}" class="btn btn-danger">Block</a> &nbsp;
-                {{else}}
-                <td><a href="/admin/unblockUser/{{this._id}}" class="btn btn-success">Unblock</a> &nbsp;
-                {{/if}}
-              </tr>
-          {{/each}}
-        </tbody>
-      </table>
+  </div>
+</div>
+
+{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#blockUser">
+  Launch demo modal
+</button> --}}
+{{#each users}}
+<!-- Modal -->
+<div class="modal fade" id="blockUser{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="blockUserLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="blockUserLabel"><strong>Block User</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Block this user ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/blockUser/{{this._id}}"  class="btn" style="background-color: black;">Block</a>
+      </div>
     </div>
-    
-</section>
+  </div>
+</div>
+{{/each}}
+
+
+{{#each users}}
+
+<div class="modal fade" id="unblockUser{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="unblockUserLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="unblockUserLabel"><strong>Block User</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        <strong>Do you want to Unblock this user ?</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><strong>Close</strong></button>
+        <a href="/admin/unblockUser/{{this._id}}"  class="btn" style="background-color: black;">unblock</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
 
 <script>
+  $(document).ready(function () {
+    $('#usertable').DataTable();
 
-  $(function () {
-    $('#userTable').DataTable();
+
   });
-
-</script> 
+</script>
