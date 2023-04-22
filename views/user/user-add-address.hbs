@@ -86,7 +86,7 @@
             <div class="form-group row">
                 <div class="col-md-12">
                 <label for="tel" class="text-black">Mobile Number<span class="text-danger">*</span> </label>
-                <input type="tel" id="tel" name="tel" class="form-control" onkeyup="validateTel()" required/>
+                <input type="tel" id="tel" name="tel" class="form-control" onkeyup="validateTel()" onfocus="addCountryCode()"  required/>
                 <span id="tel-error" class="validation-label" style="color: red;" ></span>
                 </div>
             </div>
@@ -105,3 +105,11 @@
 
 
 <script type="text/javascript" src="/javascripts/signup-validation.js"></script>
+<script>
+    function addCountryCode() {
+        var tel = document.getElementById('tel');
+        if (!tel.value.startsWith('+91')) {
+            tel.value = '+91' + tel.value;
+        }
+    }
+</script>

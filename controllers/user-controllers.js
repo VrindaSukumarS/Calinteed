@@ -64,8 +64,7 @@ module.exports = {
                 if (response.status) {
                     req.session.loggedIn = true;
                     req.session.user = response.user;
-                    req.session.userName = response.user.name
-                    console.log(req.session.userName);
+                    // req.session.userName = response.user.name
                     res.redirect('/');
                 } else {
                     req.session.loginErr = "Invalid username or password";
