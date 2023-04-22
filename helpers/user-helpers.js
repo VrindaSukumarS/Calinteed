@@ -35,10 +35,12 @@ module.exports = {
 
 
     doSignUp: (userData) => {
+        console.log('user data is here ',userData);
         return new Promise(async (resolve, reject) => {
             userData.userStatus = Boolean(userData.userStatus)
             userData.password = await bcrypt.hash(userData.password, 10);
-            let user = await db.get().collection(collection.USER_COLLECTION).find({email : userData.email}||{tel : userData.tel})
+            let user = await db.get().collection(collection.USER_COLLECTION).findOne({email : userData.email}||{tel : userData.tel})
+            console.log('existed user..........................................',user);
             if(user){
                 resolve({status : false})
             }
@@ -46,7 +48,7 @@ module.exports = {
                 db.get().collection(collection.USER_COLLECTION).insertOne(userData).then(async (data) => {
                     // resolve(data);
                     dataDoc = await db.get().collection(collection.USER_COLLECTION).findOne({ _id: data.insertedId });
-                    response.status = true;
+                    dataDoc.status = true;
                     resolve(dataDoc);
                 })
             }
