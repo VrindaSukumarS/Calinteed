@@ -84,7 +84,7 @@
                 </div>
                 <div class="mb-1">
                   <label for="category" class="form-label text-dark"><strong>Product Category : </strong></label>
-                  <select class="form-select " name="category" id="category" style="font-size:medium;">
+                  <select class="form-select " name="category" id="category" style="font-size:medium;" required>
                     <option value="" > Select a category</option>
                     {{#each categories}}
                     <option value="{{this._id}}">{{this.name}}</option>

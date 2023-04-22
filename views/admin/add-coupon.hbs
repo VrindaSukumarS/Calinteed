@@ -74,19 +74,19 @@
               <form action="/admin/add-coupon/{{coupon._id}}"  method="post">
                 <div class="mb-3">
                   <label for="name" class="form-label text-dark"><strong>Coupon Name</strong></label>
-                  <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
+                  <input type="text" class="form-control" name="name" aria-describedby="emailHelp" required>
                 </div>
                 <div class="mb-3">
                   <label for="code" class="form-label text-dark"><strong>Coupon Code</strong></label>
-                  <input type="text" class="form-control " name="code" aria-describedby="emailHelp">
+                  <input type="text" class="form-control " name="code" aria-describedby="emailHelp" required>
                 </div>
                 <div class="mb-3">
                   <label for="disamount" class="form-label text-dark"><strong>Discount Amount</strong></label>
-                  <input type="integer" class="form-control " name="disamount" aria-describedby="emailHelp">
+                  <input type="integer" class="form-control " name="disamount" aria-describedby="emailHelp" required>
                 </div>
                 <div class="mb-3">
                   <label for="expirydate" class="form-label text-dark"><strong>Expiry Date</strong></label>
-                  <input type="date" class="form-control " name="expirydate" aria-describedby="emailHelp">
+                  <input type="date" class="form-control " name="expirydate" aria-describedby="emailHelp" required>
                 </div>
                 {{#if couponErr}}
                 <p>{{couponErr}}</p>

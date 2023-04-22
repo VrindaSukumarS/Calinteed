@@ -78,7 +78,9 @@
 
 {{#if admin}}
 {{>admin-header}}
-{{else }}
+{{else if user }}
+{{>user-header}}
+{{else if userHeader }}
 {{>user-header}}
 {{/if}}
 {{{body}}}

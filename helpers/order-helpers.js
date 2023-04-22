@@ -303,7 +303,7 @@ addCoupon: (coupondata) => {
       const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
       const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
       let orders = await db.get().collection(collection.ORDER_COLLECTION).find({
-        date: {
+        delivered_date: {
           $gte: startOfDay,
           $lt: endOfDay
         }, status: 'DELIVERED'
@@ -318,7 +318,7 @@ addCoupon: (coupondata) => {
       const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
       const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
       let orders = await db.get().collection(collection.ORDER_COLLECTION).find({
-        date: {
+        delivered_date: {
           $gte: startOfDay,
           $lt: endOfDay
         }, status: 'DELIVERED'
@@ -333,7 +333,7 @@ addCoupon: (coupondata) => {
       const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
       const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
       let orders = await db.get().collection(collection.ORDER_COLLECTION).find({
-        date: {
+        delivered_date: {
           $gte: startOfMonth,
           $lt: endOfMonth
         }, status: 'DELIVERED'

@@ -1,5 +1,5 @@
 <div class="site-wrap">
-  <header class="site-navbar" role="banner">
+  <header class="site-navbar"  role="banner">
     {{!-- <div class="site-navbar-top">
       <div class="container">
         <div class="row align-items-center">
@@ -29,10 +29,10 @@
 
       <div class="container text-white">
         <div class="row align-items-center">
-          {{!-- <div class="site-logo">
-
-            <a href="index.html" class="js-logo-clone">Calinteed</a>
-          </div> --}}
+          <div class="site-logo" style="margin-left: 3rem;">
+              <a href="" class="js-logo-clone "><img src="./imageorg/cal 20x60.png"></a>
+              {{!-- <a href="/">Home</a> --}}
+            </div>
           {{!-- <div class="col-6 col-md-4 order-3 order-md-3 text-right">
             <div class="site-top-icons">
               <ul>
@@ -42,12 +42,12 @@
             </div>
           </div> --}}
 
-        </div>
+        {{!-- </div> --}}
 
         <ul class="site-menu js-clone-nav d-none d-md-block">
           <li>
             <div class="site-logo">
-              <a href="" class="js-logo-clone "> Calinteed</a>
+              <a href="/" class="">Calinteed</a>
               {{!-- <a href="/">Home</a> --}}
             </div>
           </li>
@@ -64,6 +64,8 @@
             {{#if user}}
 
             <a href=""><strong>{{userName}}</strong></a>
+            {{else}}
+            <a href="/login"><strong>Login</strong></a>
             {{/if}}
 
           </li>
@@ -79,7 +81,7 @@
               <ul>
                 {{#if user}}
                 <li class="has-children">
-                  <a href="/userprofile"><span class="icon icon-person"></span></a>
+                  <a href="/userprofile" class=""><span class="icon icon-person"></span></a>
                   <ul class="dropdown">
                     <li><a href="/userprofile">{{user.name}}</a></li>
                     <li><a href="/userprofile">My Account</a></li>
@@ -112,9 +114,9 @@
                   </a>
                 </li>
                 {{/if}}
-                <li class="d-inline-block d-md-none ml-md-0">
+                {{!-- <li class="d-inline-block d-md-none ml-md-0">
                   <a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-close"></span></a>
-                </li>
+                </li> --}}
               </ul>
 
 
@@ -124,8 +126,8 @@
         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
           <div class="site-top-icons">
             <ul>
-              <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                    class="icon-menu "></span></a></li>
+              <li class="d-inline-block d-md-none " style="margin-left: 15rem;"><a href="#" class="site-menu-toggle js-menu-toggle"><span
+                    class="icon-menu " style=""></span></a></li>
             </ul>
           </div>
         </div>

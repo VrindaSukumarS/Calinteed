@@ -37,7 +37,7 @@ module.exports = {
                 res.render('user/user-view', { user, banners, cartCount, userHeader: true, userName : req.session.userName });
             }
 
-            res.render('user/user-view', { cartCount, banners, userHeader: true });
+            res.render('user/user-view', {cartCount, banners, userHeader: true });
         }
         catch (err) {
             console.log(err);

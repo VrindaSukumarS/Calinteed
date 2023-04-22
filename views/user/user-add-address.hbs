@@ -46,7 +46,7 @@
                 <div class="col-md-12">
                 <label for="name" class="text-black">Full Name <span class="text-danger">*</span></label>
                <input type="text" id="name" name="name" class="form-control"
-                onkeyup="validateName()" placeholder="Name"/>
+                onkeyup="validateName()" placeholder="Name" required/>
                 <span id="name-error" class="validation-label" style="color: red;"></span>                  
                 </div>
                 
@@ -55,7 +55,7 @@
                 <div class="col-md-12">
                 <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
                 <input type="address" id="address" name="address" class="form-control"
-                onkeyup="validateaddress()" />
+                onkeyup="validateaddress()"  required/>
                 <span id="address-error" class="validation-label" style="color: red;"></span>
                 </div>
             </div>
@@ -64,14 +64,14 @@
                 <div class="col-md-12">
                 <label for="state" class="text-black">State<span class="text-danger">*</span></label>
                     <input type="state" id="state" name="state" class="form-control"
-                    onkeyup="validatestate()"/>
+                    onkeyup="validatestate()" required/>
                     <span id="state-error" class="validation-label" style="color: red;"></span>                </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
                 <label for="country" class="text-black">Country<span class="text-danger">*</span></label>
                     <input type="country" id="country" name="country" class="form-control"
-                    onkeyup="validatecountry()"/>
+                    onkeyup="validatecountry()" required/>
                     <span id="country-error" class="validation-label" style="color: red;"></span>                </div>
             </div>
             
@@ -79,14 +79,14 @@
                 <div class="col-md-12">
                 <label for="postal_zip" class="text-black">Postal / Zip <span class="text-danger">*</span></label>
                 <input type="pincode" id="pincode" name="pincode" class="form-control"
-                onkeyup="validatepincode()"/>
+                onkeyup="validatepincode()" required/>
                 <span id="pincode-error" class="validation-label" style="color: red;"></span>              
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
                 <label for="tel" class="text-black">Mobile Number<span class="text-danger">*</span> </label>
-                <input type="tel" id="tel" name="tel" class="form-control" onkeyup="validateTel()"/>
+                <input type="tel" id="tel" name="tel" class="form-control" onkeyup="validateTel()" required/>
                 <span id="tel-error" class="validation-label" style="color: red;" ></span>
                 </div>
             </div>

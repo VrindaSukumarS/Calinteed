@@ -24,30 +24,27 @@
     min-height: 100vh;
     background: #fafafa;
   }
-
-  
-  
 </style>
 
 {{!-- .social-link {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    border-radius: 50%;
-    transition: all 0.3s;
-    font-size: 0.8rem;
-  }
+width: 30px;
+height: 30px;
+border: 1px solid #ddd;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #666;
+border-radius: 50%;
+transition: all 0.3s;
+font-size: 0.8rem;
+}
 
-  .social-link:hover,
-  .social-link:focus {
-    background: #ddd;
-    text-decoration: none;
-    color: #555;
-  } --}}
+.social-link:hover,
+.social-link:focus {
+background: #ddd;
+text-decoration: none;
+color: #555;
+} --}}
 
 
 
@@ -81,7 +78,7 @@
                 <div class="dropdown mr-1 ml-md-auto">
                   <form action="/product-search" method="post" class="site-block-top-search">
                     <span class="icon icon-search text-dark"></span>
-                    <input type="text" class="form-control border-0" value="" name="search"  placeholder="Search here">
+                    <input type="text" class="form-control border-0" value="" name="search" placeholder="Search here">
                     <button type="submit" hidden></button>
                   </form>
                   {{!-- <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset"
@@ -144,11 +141,13 @@
                 <div class="card rounded shadow-sm border-0">
                   <div class="card-body p-0"><a href="/product-view/{{this._id}}"><img src="{{this.imagefield.[0]}}"
                         alt="Image placeholder" class="img-fluid d-block mx-auto mb-3"
-                        style="object-fit: cover; width:500px; height:300px; opacity: 0.5;"></a><span> <button onfocus="none"
-                        onclick="wishlist('{{this._id}}')" id="wishlist"
+                        style="object-fit: cover; width:500px; height:300px; opacity: 0.5;"></a><span> <button
+                        onfocus="none" onclick="wishlist('{{this._id}}')" id="wishlist"
                         class="material-icons favorite-icon icon icon-heart-o " style="border: none;"></button></span>
-                        <div class="out-of-stock text-danger" style="position: absolute;transform: translate(-50%, -50%); top: 40%;left: 50%;font-weight: bold;">Out of Stock</div>
-{{!-- width:500px; height:300px;  --}}
+                    <div class="out-of-stock text-danger"
+                      style="position: absolute;transform: translate(-50%, -50%); top: 40%;left: 50%;font-weight: bold;">
+                      Out of Stock</div>
+                    {{!-- width:500px; height:300px; --}}
                     <h5 class="text-dark">{{this.name}}</a></h5>
                     <p class=" text-dark font-bold">{{this.price}}
                     </p>
@@ -228,7 +227,7 @@
             <ul class="list-unstyled mb-0">
               {{#each categories}}
               <li class="mb-1"><a href="/filter-category/{{this._id}}" class="d-flex"><span>{{this.name}}</span> <span
-                    class="text-black ml-auto">(2,220)</span></a></li>
+                    class="text-black ml-auto"></span></a></li>
               {{/each}}
             </ul>
 
@@ -323,76 +322,41 @@
 
   <footer class="site-footer border-top">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="footer-heading mb-4">Navigations</h3>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="#">Sell online</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Shopping cart</a></li>
-                <li><a href="#">Store builder</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="#">Mobile commerce</a></li>
-                <li><a href="#">Dropshipping</a></li>
-                <li><a href="#">Website development</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="#">Point of sale</a></li>
-                <li><a href="#">Hardware</a></li>
-                <li><a href="#">Software</a></li>
-              </ul>
-            </div>
+      <div class="row pt-5 mt-5 text-center">
+        <div class="col-md-12 ">
+          <h2 class="mb-5 text-dark">Stay Comfy</h2>
+          <h4 class="mb-5 text-dark">Subscribe for Updates & more Offers</h4>
+          <div class="col-md-6 d-flex mx-auto text-center">
+            <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+            <input type="submit" class="btn btn-sm btn-dark" value="Subscribe">
           </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-          <h3 class="footer-heading mb-4">Promo</h3>
-          <a href="#" class="block-6">
-            <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-            <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-            <p>Promo from nuary 15 &mdash; 25, 2019</p>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="block-5 mb-5">
-            <h3 class="footer-heading mb-4">Contact Info</h3>
-            <ul class="list-unstyled">
-              <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-              <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-              <li class="email">emailaddress@domain.com</li>
-            </ul>
+          <div class="col-md-12 mt-5">
+            <div class="row" style="justify-content:center;">
+              <div class="col-md-2">
+                <h6 class="text-dark">Shop</h6>
+
+              </div>
+              <div class="col-md-2">
+                <h6 class="text-dark">Shipping & Returns</h6>
+
+              </div>
+              <div class="col-md-2">
+                <h6 class="text-dark">Contact & FAQ</h6>
+
+              </div>
+              <div class="col-md-2">
+                <h6 class="text-dark">Our Story</h6>
+
+              </div>
+            </div>
           </div>
 
-          <div class="block-7">
-            <form action="#" method="post">
-              <label for="email_subscribe" class="footer-heading">Subscribe</label>
-              <div class="form-group">
-                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                <input type="submit" class="btn btn-sm btn-primary" value="Send">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="row pt-5 mt-5 text-center">
-        <div class="col-md-12">
-          <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;
-            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-            with
-            <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
-              class="text-primary">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+
+          <p class="mt-5 text-dark">
+            Crafted with love | 100% Cruelty free<br>&copy;
+            <script data-cfasync="false" src=""></script>
+            <script>document.write(new Date().getFullYear());</script> by Calinteed
           </p>
         </div>
 
