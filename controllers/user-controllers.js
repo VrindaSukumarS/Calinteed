@@ -64,7 +64,7 @@ module.exports = {
                 if (response.status) {
                     req.session.loggedIn = true;
                     req.session.user = response.user;
-                    // req.session.userName = response.user.name
+                    req.session.userName = response.user.name
                     res.redirect('/');
                 } else {
                     req.session.loginErr = "Invalid username or password";
@@ -568,6 +568,7 @@ module.exports = {
     productSearch: async (req, res) => {
         try {
             let cartCount = null
+            let user = req.session.user
             cartCount = await userHelpers.getCartCount(req.session.user._id)
 
             let currentPage = req.query.page || 1
@@ -581,7 +582,7 @@ module.exports = {
                 for (let i = 0; i < filteredProducts.length; i++) {
                     filteredProducts[i].price = filteredProducts[i].price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
                 }
-                res.render('user/filter-category', { user: true, cartCount, currentPage, productCount, categories, filteredProducts, userName: req.session.userName });
+                res.render('user/filter-category', { user: true,user, cartCount, currentPage, productCount, categories, filteredProducts, userName: req.session.userName });
             })
         }
         catch (err) {
@@ -592,6 +593,7 @@ module.exports = {
     filterCategories: async (req, res) => {
         try {
             let cartCount = null
+            let user = req.session.user
             cartCount = await userHelpers.getCartCount(req.session.user._id)
 
             let currentPage = req.query.page || 1
@@ -608,7 +610,7 @@ module.exports = {
                     for (let i = 0; i < filteredProducts.length; i++) {
                         filteredProducts[i].price = filteredProducts[i].price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
                     }
-                    res.render('user/filter-category', { user: true, cartCount, categoryName, currentPage, productCount, maxPrice, minPrice, categories, filteredProducts, userName: req.session.userName });
+                    res.render('user/filter-category', { user: true,user, cartCount, categoryName, currentPage, productCount, maxPrice, minPrice, categories, filteredProducts, userName: req.session.userName });
                 })
             })
 
@@ -622,6 +624,7 @@ module.exports = {
     filterCategory: async (req, res) => {
         try {
             let cartCount = null
+            let user = req.session.user
             let price = parseInt(req.body.price)
             cartCount = await userHelpers.getCartCount(req.session.user._id)
             categoryHelpers.getAllCategory().then((categories) => {
@@ -810,7 +813,6 @@ module.exports = {
             let userAddress = await userHelpers.getUserAddress(req.session.user._id)
             let wallet = await userHelpers.myWallet(req.session.user._id);
             let walletAmount = wallet.wallet
-            req.session.coupon = false;
             let outOfStock = false;
             for (let i = 0; i < product.length; i++) {
                 if (product[i].product.stock == 0) {
@@ -835,10 +837,11 @@ module.exports = {
             const userId = req.session.user._id
             let products = await userHelpers.getCartProductList(userId);
             let price = await userHelpers.getTotalAmount(userId)
-            let coupon = req.session.coupon
+            let couponAmount = req.session.coupon
             let couponId = req.session.couponId
-            let totalPrice = price - coupon
+            let totalPrice = price - couponAmount
             userHelpers.checkOut(userId, req.body, products, totalPrice).then((orderId) => {
+
 
                 if (req.body['payment-method'] === 'COD') {
                     for (let i = 0; i < products.length; i++) {
@@ -889,6 +892,9 @@ module.exports = {
             userHelpers.applyCoupon(req.body, userId).then(async (response) => {
                 req.session.couponId = response._id
                 req.session.coupon = response.disamount;
+                let couponAmount = req.session.coupon
+                console.log('coupon applied amount',couponAmount);
+                console.log();
                 res.json(response)
             })
         }
@@ -950,8 +956,11 @@ module.exports = {
     thankYou: async (req, res) => {
         try {
             let cartCount = null
+            let user=req.session.user
             cartCount = await userHelpers.getCartCount(req.session.user._id)
-            res.render('user/thank-you', { user: true, cartCount, userName: req.session.userName });
+            res.render('user/thank-you', { user: true,user, cartCount, userName: req.session.userName });
+            req.session.coupon = false;
+
         }
         catch (err) {
             console.log(err);

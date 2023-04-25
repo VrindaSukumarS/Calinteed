@@ -646,6 +646,7 @@ module.exports = {
     checkOut: (userId, order, products, totalPrice) => {
         return new Promise(async (resolve, reject) => {
             order.totalAmount = Number(totalPrice);
+            console.log(order.totalAmount);
             let UserDetails = await db.get().collection(collection.USER_COLLECTION).aggregate([
                 {
                     $match: {
@@ -677,7 +678,6 @@ module.exports = {
                 products: products,
                 totalAmount: totalPrice,
                 status: status,
-
                 date: new Date()
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response) => {
@@ -904,6 +904,7 @@ module.exports = {
             };
             instance.orders.create(options, function (err, order) {
                 if (err) {
+                    console.log(err);
                 } else {
                     resolve(order)
                 }
