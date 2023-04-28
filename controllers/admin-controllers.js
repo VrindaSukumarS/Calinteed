@@ -367,7 +367,8 @@ module.exports = {
 
     addCategory: (req, res) => {
         try{
-        res.render('admin/add-category', { admin: true, adminName: req.session.adminName });
+        res.render('admin/add-category', { admin: true, adminName: req.session.adminName, categoryErr : req.session.categoryErr });
+        req.session.categoryErr = false;
         }
         catch (err) {
             console.log(err);
@@ -375,15 +376,21 @@ module.exports = {
     },
 
     addCategoryPost: async (req, res) => {
-        try{
-        categoryHelpers.addCategory(req.body).then((response) => {
-            res.redirect('/admin/add-category')
-        })
-    }
-    catch (err) {
-        console.log(err);
-    }
-
+        try{          
+            categoryHelpers.addCategory(req.body).then((response) => {
+                if(response.status){
+                res.redirect('/admin/add-category')
+                
+                }
+                else{
+                    req.session.categoryErr="This category already existed!!!";
+                    res.redirect('/admin/add-category')
+                }
+            })
+        }
+        catch (err) {
+            console.log(err);
+        }
     },
 
     editCategory: async (req, res) => {
@@ -677,7 +684,7 @@ module.exports = {
                 res.redirect('/admin/add-coupon')
             }
             else{
-                req.session.couponErr="Coupon already existed!!!";
+                req.session.couponErr="This coupon already existed!!!";
                 res.redirect('/admin/add-coupon')
             }
          })

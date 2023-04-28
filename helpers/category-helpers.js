@@ -2,16 +2,27 @@ const db = require('../config/connection');
 const collection = require('../config/collections');
 const bcrypt = require('bcrypt');
 const { resolve } = require('path');
+const { response } = require('../app');
 const objectId=require('mongodb-legacy').ObjectId;
 
 module.exports={
 
     addCategory :(categorydata)=>{
         categorydata.status=true;
-        return new Promise(async(resolve,reject)=>{     
+        return new Promise(async(resolve,reject)=>{  
+            let categoryExist = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({$or : [
+                {name : categorydata.name}
+            ]})
+            if(categoryExist){
+                resolve({status : false})
+            }
+            else{
             db.get().collection(collection.CATEGORY_COLLECTION).insertOne(categorydata).then((data)=>{
                 resolve(data);
+                response.status = true;
+                resolve(response)
             })
+        }
         })
     },
 

@@ -77,7 +77,9 @@
                   <input type="text" class="form-control mt-4" name="name" aria-describedby="emailHelp" required>
                 </div>
 
-
+              {{#if categoryErr}}
+                <p class="text-danger">{{categoryErr}}</p>
+                {{/if}}
                 <div class="text-center mt-5 mb-5">
                   <button type="submit" class="btn btn-success">Submit</button>
                   {{!--

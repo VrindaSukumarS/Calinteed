@@ -18,7 +18,7 @@ module.exports = {
 
     validateUser: (userData) => {
         return new Promise(async (resolve, reject) => {
-            let user = db.get().collection(collection.USER_COLLECTION).findOne({ tel: userData.number })
+            let user = await db.get().collection(collection.USER_COLLECTION).findOne({ tel: userData.number })
             resolve(user);
         })
     },

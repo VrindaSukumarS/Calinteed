@@ -1,6 +1,6 @@
 /* Base */
 body {
-  line-height: 1.7;
+  /* line-height: 1.7; */
   color: #8c92a0;
   font-weight: 300;
   font-size: 16px; 
@@ -159,7 +159,7 @@ a {
     text-transform: uppercase;
     color: #25262a;
     letter-spacing: 0.15em;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 900;
     /* font-size: 20px;
     padding-left: 10px;
@@ -185,16 +185,17 @@ a {
       .site-navbar .site-top-icons ul li a.site-cart {
         display: block;
         position: relative; }
-        .site-navbar .site-top-icons ul li a.site-cart .count {
-          position: absolute;
-          top: 0;
+        /* .site-navbar .site-top-icons ul li a.site-cart .count  */
+        .site-cart .count {
+          position: relative;
+          top: -22px;
           right: 0;
           margin-right: -15px;
-          margin-top: -20px;
+          margin-top: -25px;
           font-size: 13px;
-          width: 24px;
-          height: 24px;
-          line-height: 24px;
+          width: 22px;
+          height: 23px;
+          line-height: 27px;
           border-radius: 50%;
           display: block;
           text-align: center;
@@ -203,6 +204,7 @@ a {
           -webkit-transition: .2s all ease-in-out;
           -o-transition: .2s all ease-in-out;
           transition: .2s all ease-in-out; }
+      /* .site-navbar .site-top-icons ul li a:hover .count { */
       .site-navbar .site-top-icons ul li a:hover .count {
         -webkit-box-shadow: 0 3px 10px -4px rgba(0, 0, 0, 0.3) !important;
         box-shadow: 0 3px 10px -4px rgba(0, 0, 0, 0.3) !important;
@@ -365,9 +367,10 @@ a {
         color: #25262a;
         letter-spacing: .2em;
         font-size: 20px;
-        padding-left: 10px;
+        /* padding-left: 10px; */
         padding-right: 10px;
-        border: 2px solid #25262a; }
+        /* border: 2px solid #25262a; */
+       }
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a:hover {
           text-decoration: none; }
   .site-mobile-menu .site-mobile-menu-body {

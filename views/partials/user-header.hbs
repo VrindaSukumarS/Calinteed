@@ -1,149 +1,136 @@
-<div class="site-wrap">
-  <header class="site-navbar"  role="banner">
-    {{!-- <div class="site-navbar-top">
+<style>
+  .fixed {
+    z-index: 100;
+    top: 0;
+    position: sticky;
+    height: 60px;
+  }
+
+  .icons-btn {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .icons-btn span {
+    display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+  }
+
+  @media (max-width: 991.98px) {
+    .icons-btn span {
+      width: 24px;
+    }
+  }
+</style>
+{{!-- <div class="site-wrap"> --}}
+  <div class="site-navbar bg-white py-1 fixed" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);">
+
+    {{!-- <div class="search-wrap">
       <div class="container">
-        <div class="row align-items-center">
-          <div class="site-logo">
-
-            <a href="index.html" class="js-logo-clone">Calinteed</a>
-          </div>
-          <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-            <div class="site-top-icons">
-              <ul>
-                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                      class="icon-menu"></span></a></li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
+        <span class="icon-close2 search-close js-search-close"></span>
+        <form action="/search" method="post">
+          <input type="text" class="form-control" name="searchKey" placeholder="Search here....">
+          <button type="submit" hidden></button>
+        </form>
       </div>
     </div> --}}
 
-
-
-
-
-    <nav class="site-navigation text-right text-md-center"
-      style="position: fixed; z-index:-1; width:100%;background-color:white" role="navigation">
-
-      <div class="container text-white">
-        <div class="row align-items-center">
-          <div class="site-logo" style="margin-left: 3rem;">
-              <a href="" class="js-logo-clone "><img src="./imageorg/cal 20x60.png"></a>
-              {{!-- <a href="/">Home</a> --}}
-            </div>
-          {{!-- <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-            <div class="site-top-icons">
-              <ul>
-                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                      class="icon-menu"></span></a></li>
-              </ul>
-            </div>
-          </div> --}}
-
-        {{!-- </div> --}}
-
-        <ul class="site-menu js-clone-nav d-none d-md-block">
-          <li>
-            <div class="site-logo">
-              <a href="/" class="">Calinteed</a>
-              {{!-- <a href="/">Home</a> --}}
-            </div>
-          </li>
-
-          <li><a href="/">Home</a></li>
-          <li><a href="/shop-view">Shop</a></li>
-          <li>
-            <a href="/about-us">About</a>
-          </li>
-          <li><a href="/fabric-view">Fabric Background</a></li>
-
-          <li><a href="contact.html" hidden>Contact Us</a></li>
-          <li>
-            {{#if user}}
-
-            <a href=""><strong>{{user.name}}</strong></a>
-            {{else}}
-            <a href="/login"><strong>Login</strong></a>
-            {{/if}}
-
-          </li>
-          <li>
-            {{!-- <form action="" class="site-block-top-search">
-              <span class="icon icon- text-dark"></span>
-              <input type="text" class="form-control border-0" placeholder="">
-            </form> --}}
-          </li>
-
-          <li>
-            <div class="site-top-icons">
-              <ul>
-                {{#if user}}
-                <li class="has-children">
-                  <a href="/userprofile" class=""><span class="icon icon-person"></span></a>
-                  <ul class="dropdown">
-                    <li><a href="/userprofile">{{user.name}}</a></li>
-                    <li><a href="/userprofile">My Account</a></li>
-                    <li><a href="/user-orders">My Orders</a></li>
-                    <li><a href="/logout">Log Out</a></li>
-                  </ul>
-                </li>
-                {{else}}
-                <li><a href="/login"><span class="icon icon-person"></span></a></li>
-                {{/if}}
-                {{#if user}}
-                <li><a href="/wishlist"><span class="icon icon-heart-o"></span></a></li>
-                {{else}}
-                <li><a href="/login"><span class="icon icon-heart-o"></span></a></li>
-                {{/if}}
-
-
-                {{#if user}}
-                <li>
-                  <a href="/usercart" class="site-cart">
-                    <span class="icon icon-shopping_cart"></span>
-                    <span class="count" id="cartCount">{{cartCount}}</span>
-                  </a>
-                </li>
-                {{else}}
-                <li>
-                  <a href="/login" class="site-cart">
-                    <span class="icon icon-shopping_cart"></span>
-                    {{!-- <span class="count">{{cartCount}}</span> --}}
-                  </a>
-                </li>
-                {{/if}}
-                {{!-- <li class="d-inline-block d-md-none ml-md-0">
-                  <a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-close"></span></a>
-                </li> --}}
-              </ul>
-
-
-            </div>
-          </li>
-        </ul>
-        <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-          <div class="site-top-icons">
-            <ul>
-              <li class="d-inline-block d-md-none " style="margin-left: 15rem;"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                    class="icon-menu " style=""></span></a></li>
-            </ul>
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <div class="site-logo">
+            <a href="/" class="js-logo-clone">Calinteed</a>
           </div>
         </div>
-      </div>
+        <div class="main-nav d-none d-lg-block">
+          <nav class="site-navigation text-right text-md-center" role="navigation">
+            <ul class="site-menu js-clone-nav d-none d-lg-block">
+              <li> {{!class="has-children active"}}
+                <a href="/">Home</a>
 
-    </nav>
+              </li>
 
-  </header>
-</div>
-{{!-- <div class="site-mobile-menu">
-  <div class="container">
-    <div class="site-mobile-menu-header">
-      <div class="site-mobile-menu-close">
-        <span class="icon-close2 js-menu-toggle"></span>
+              <li><a href="/shop-view">Shop</a></li>
+              <li>
+                <a href="/about-us">About</a>
+              </li>
+              <li><a href="/fabric-view">Fabric Background</a></li>
+
+              {{!-- <li><a href="#">Catalogue</a></li>
+              <li><a href="#">New Arrivals</a></li> --}}
+              {{!-- <li><a href="/contact">Contact</a></li> --}}
+
+              {{!-- <li><a href="/wishlist" class="icons-btn d-inline-block"><span class="icon-heart-o"></span></li>
+              --}}
+              {{#if user}}
+              {{!-- <li><a href="/user-cart" class=" d-inline-block bag">
+                  <span class="icon-shopping-bag "></span>
+                  <span class="number " id="cart-count">{{cartCount}}</span>
+                  <span class="d-block d-lg-none">BAG</span>
+                </a></li> --}}
+
+              <li class="has-children active">
+                <a href=""><strong>{{user.name}}</strong></a>
+                <ul class="dropdown">
+                  <li><a href="/userprofile">My Account</a></li>
+                  <li><a href="/user-orders">My Orders</a></li>
+                  <li><a href="/logout">Log Out</a></li>
+
+                </ul>
+              </li>
+
+
+              {{!-- <li><a class="icons-btn d-inline-block" href="/logout"> <span><i
+                      class="mdi mdi-logout"></i></span></a></li> --}}
+              {{else}}
+              <li><a class="icons-btn d-inline-block" href="/login"> LOGIN</a></li>
+              {{/if}}
+            </ul>
+          </nav>
+        </div>
+        <div class="icons has-children active">
+
+          {{!-- <form action="/search" method="post">
+            <input type="text" name="searchTerm" hidden>
+            <a type="submit" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+          </form> --}}
+
+          {{!-- <input type="text" name="searchTerm" id="search" onkeyup="sendData(this)"> --}}
+
+          {{!-- <a href="/search" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+          --}}
+
+          {{!-- <form action="/search" method="post" id="myForm" style="all: initial; color:grey">
+            <input type="text" id="search" name="searchKey" value="" hidden>
+            <span class="icon-search icons-btn d-inline-block js-search-open"></span>
+            <button type="submit" hidden></button>
+          </form> --}}
+          <a href="/wishlist"><span class="icon icon-heart-o d-inline-block">
+              {{#if user}}
+
+              <a href="/usercart" class="site-cart d-inline-block ml-3">
+                <span class="icon icon-shopping_cart"></span>
+                <span class="count" id="cartCount">{{cartCount}}</span>
+              </a>
+
+
+              {{!-- <a class="icons-btn d-inline-block" href="/logout"> <span><i
+                    class="mdi mdi-logout d-none d-lg-block"></i></span></a> --}}
+              {{!-- <a href="/user-profile" class="text-primary">{{user.name}}</a>
+
+              <a class="icons-btn d-inline-block" href="/logout"> <span><i class="mdi mdi-logout"></i></span></a>
+              {{else}}
+              <a href="/" class="icons-btn d-inline-block "><span class="icon-user"></span></a>
+              <a class="icons-btn d-inline-block" href="/login"> LOGIN</a> --}}
+              {{/if}}
+
+              <a href="#" class="site-menu-toggle js-menu-toggle ml-3 ms-auto mt-3 d-inline-block d-lg-none" style="font-size:18px"><span
+                  class="icon-menu"></span></a>
+        </div>
       </div>
     </div>
-    <div class="site-mobile-menu-body"></div>
+        
   </div>
-</div> --}}
+</div>

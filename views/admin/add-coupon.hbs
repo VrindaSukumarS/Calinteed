@@ -89,8 +89,8 @@
                   <input type="date" class="form-control " name="expirydate" aria-describedby="emailHelp" required>
                 </div>
                 {{#if couponErr}}
-                <p>{{couponErr}}</p>
-                {{/if}}
+                <p class="text-danger">{{couponErr}}</p>
+                {{/if}} 
                 <div class="text-center mt-3 mb-3">
                   <button type="submit" class="btn btn-success"><a href="/admin/coupon-management" class="text-white">Submit</a></button>
                   {{!--

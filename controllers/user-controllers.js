@@ -702,7 +702,6 @@ module.exports = {
         try {
             let cartCount = null
             let categoryId = req.session.catId
-            console.log('categoryId!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11',categoryId);
             cartCount = await userHelpers.getCartCount(req.session.user._id)
             categoryHelpers.getAllCategory().then((categories) => {
                 productHelpers.categoryHighLowPrice(categoryId).then((filteredProducts) => {
