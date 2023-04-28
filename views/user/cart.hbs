@@ -239,7 +239,7 @@
                 <span class="text-black">Total</span>
               </div>
               <div class="col-md-6 text-right">
-                <strong class="text-black">₹<span id="carttotal"> {{totalValue}}</span></strong>
+                <strong class="text-black">₹<span id="cartTotal"> {{totalValue}}</span></strong>
               </div>
             </div>
 
@@ -354,7 +354,7 @@
         } else if (response.status) {
           document.getElementById(proId).innerHTML = quantity + count
           document.getElementById('total').innerHTML = response.total;
-          document.getElementById('carttotal').innerHTML = response.total;
+          document.getElementById('cartTotal').innerHTML = response.total;
           quantity = quantity + count
           subtotal = quantity * price
           document.getElementById('sub' + proId).innerHTML = subtotal.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })
@@ -423,9 +423,9 @@
             }
             else {
               let total = document.getElementById('total').innerHTML
-              let carttotal = total - response.disamount
+              let cartTotal = total - response.disamount
               document.getElementById('discount').innerHTML = response.disamount
-              document.getElementById('carttotal').innerHTML = carttotal
+              document.getElementById('cartTotal').innerHTML = cartTotal
               console.log(response)
             }
           }

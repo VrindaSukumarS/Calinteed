@@ -838,7 +838,7 @@ module.exports = {
             let price = await userHelpers.getTotalAmount(userId)
             let couponAmount = req.session.coupon
             let couponId = req.session.couponId
-            let totalPrice = price - couponAmount
+            var totalPrice = price - couponAmount
             userHelpers.checkOut(userId, req.body, products, totalPrice).then((orderId) => {
 
 
