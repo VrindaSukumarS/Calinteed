@@ -294,12 +294,13 @@ module.exports = {
     viewOrderProducts: async (req, res) => {
         try {
             let cartCount = null
+            let user = req.session.user
             cartCount = await userHelpers.getCartCount(req.session.user._id)
             let products = await userHelpers.getOrderProducts(req.params.id)
             let details = await orderHelpers.viewOrderDetails(req.params.id)
             // let products = await orderHelpers.orderProductDetails(orderId)
 
-            res.render('user/view-order-products', { user: true, products, details, cartCount, userName: req.session.userName });
+            res.render('user/view-order-products', { user: true,user, products, details, cartCount, userName: req.session.userName });
         }
         catch (err) {
             console.log(err);
@@ -393,6 +394,29 @@ module.exports = {
     },
 
     userAddressPost: async (req, res) => {
+        try {
+            let cartCount = null
+            // let user=req.session.user
+            let addressId = req.params.id
+            cartCount = await userHelpers.getCartCount(req.session.user._id)
+            try {
+                userHelpers.updateAddressDetails(req.session.user._id, req.body, addressId).then((response) => {
+                    console.log(response);
+                    res.redirect('back')
+                })
+            }
+            catch (error) {
+                console.log(error);
+                res.redirect('back')
+            }
+
+        }
+        catch (err) {
+            console.log(err);
+        }
+    },
+
+    userCartAddressPost: async (req, res) => {
         try {
             let cartCount = null
             // let user=req.session.user

@@ -67,6 +67,8 @@ router.get('/user-address/:id', authUser.verifyLogin, controllers.userAddress);
 
 router.post('/user-address/:id', authUser.verifyLogin, controllers.userAddressPost);
 
+router.post('/user-cart-address/:id', authUser.verifyLogin, controllers.userCartAddressPost);
+
 router.get('/user-delete-address/:id', authUser.verifyLogin, controllers.deleteAddress);
 
 router.get('/user-add-address', authUser.verifyLogin, controllers.userAddAddress);

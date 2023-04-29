@@ -663,7 +663,7 @@ module.exports = {
                 }
             ]).toArray();
 
-            let status = order['payment-method'] == 'COD' || 'WALLET' ? 'PLACED' : 'PENDING'
+            let status = order['payment-method'] == 'COD' || 'WALLET' || 'ONLINE' ? 'PLACED' : 'PENDING'
             let orderObj = {
                 deliveryDetails: {
                     name: UserDetails[0].addresses.name,
