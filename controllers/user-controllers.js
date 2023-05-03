@@ -483,6 +483,20 @@ module.exports = {
         }
     },
 
+    addCartAddress: async (req, res) => {
+        try {
+            let cartCount = null
+            cartCount = await userHelpers.getCartCount(req.session.user._id)
+            let userId = req.session.user._id
+            userHelpers.addAddress(userId, req.body).then((response) => {
+                res.redirect(`/checkout`);
+            })
+        }
+        catch (err) {
+            console.log(err);
+        }
+    },
+
     changePassword: async (req, res) => {
         try {
             let cartCount = null

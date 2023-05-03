@@ -75,6 +75,8 @@ router.get('/user-add-address', authUser.verifyLogin, controllers.userAddAddress
 
 router.post('/user-add-address', authUser.verifyLogin, controllers.addAddress);
 
+router.post('/user-cartadd-address', authUser.verifyLogin, controllers.addCartAddress);
+
 router.get('/change-password', authUser.verifyLogin, controllers.changePassword);
 
 router.post('/change-password', authUser.verifyLogin, controllers.changePasswordPost);
